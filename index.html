@@ -1,15 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Page</title>
-  </head>
-  <body>
-    <p>Marko je ovo dodao</p>
-    <p>Milena je takodje dodala.</p>
-    <p>Ovo je Vacy</p>
-    <p>Ovo je Milutin dodao</p>
-    <p>Vacy je dodala drugu promenu, Milutin nas je napustio</p>
-  </body>
-</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Review App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Saved Review</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+            <h1>Book Review App</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for books...">
+                <button id="searchButton">Search</button>
+            </div>
+        </div>
+</header>
+    <div class="bookSection">
+    <div class="book">
+        <img src="https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9781648294891_p0_v1%5D&call=url%5Bfile:common/decodeProduct.chain%5D"/>
+        <h2>Why I Cook (Signed Book)</h2>
+        <p>by Tom Colicchio</p>
+        <div id="reviewSection" class="review-section"> <input type="text" id="writeReview" placeholder="Write your review here..."></div>
+    </div>
+    <div class="book">
+        <img src="https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9781250892317_p0_v12%5D&call=url%5Bfile:common/decodeProduct.chain%5D"/>
+        <h2>Murdle: Volume 1</h2>
+        <p>by G. T. Karber</p>
+        <div id="reviewSection" class="review-section"> <input type="text" id="writeReview" placeholder="Write your review here..."></div>
+    </div>
+    <div class="book">
+        <img src="https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9781501110368_p0_v13%5D&call=url%5Bfile:common/decodeProduct.chain%5D"/>
+        <h2>It Ends with Us</h2>
+        <p>by Colleen Hoover</p>
+        <div id="reviewSection" class="review-section"> <input type="text" id="writeReview" placeholder="Write your review here..."></div>
+    </div>
+    </div>
+    <div class="bookSection2">
+    <div class="book">
+        <img src="https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9781649374189_p0_v5%5D&call=url%5Bfile:common/decodeProduct.chain%5D"/>
+        <h2>Onyx Storm</h2>
+        <p>by Rebecca Yarros</p>
+        <div id="reviewSection" class="review-section"> <input type="text" id="writeReview" placeholder="Write your review here..."></div>
+    </div>
+    <div class="book">
+        <img src="https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9780375972959_p0_v4%5D&call=url%5Bfile:common/decodeProduct.chain%5D"/>
+        <h2>Oh, the Places You'll Go! </h2>
+        <p>by Dr. Seuss</p>
+        <div id="reviewSection" class="review-section"> <input type="text" id="writeReview" placeholder="Write your review here..."></div>
+    </div>
+    <div class="book">
+        <img src="https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9798200920235_p0_v2%5D&call=url%5Bfile:common/decodeProduct.chain%5D"/>
+        <h2>Bits and Pieces </h2>
+        <p>by Whoopi Goldberg</p>
+        <div id="reviewSection" class="review-section"> <input type="text" id="writeReview" placeholder="Write your review here..."></div>
+    </div>
+  
+    </div>
+<footer>  
+    <div class="footer-container">
+    <div class="footer-section">
+        <h3>About Us</h3>
+        <p>We are passionate about books and aim to create a community where book lovers can share reviews and discover new reads.</p>
+    </div>
+    <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Browse Books</a></li>
+            <li><a href="#">Submit Review</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: info@bookreviewapp.com</p>
+        <p>Phone: (123) 456-7890</p>
+    </div>
+</div>
+<div class="footer-bottom">
+    <p>&copy; 2024 Book Review App. All rights reserved.</p>
+</div>
+</footer>
+    <script src="main.js"></script>
+</body>
+</html>s
