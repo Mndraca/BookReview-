@@ -135,8 +135,16 @@ flex-direction: row;
 justify-content: space-evenly;
 margin: 30px;
 padding: 10px;
+}
 
-
+.bookList{
+    list-style-type: none;
+}
+.hidden{
+    display: none;
+}
+.foundBooks{
+    list-style-type: none;
 }
 
 footer {
