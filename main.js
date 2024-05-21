@@ -1,13 +1,3 @@
-const searchInput = document.getElementById('searchInput');
-const searchButton = document.getElementById('searchButton');
-const searchForm = document.getElementById('form');
-const bookList = document.getElementById('bookList');
-const reviewSection = document.getElementById('reviewSection');
-
-searchButton.addEventListener('click', searchBooks);
-searchForm.addEventListener('submit', (e) =>{
-    e.preventDefault();
- })
 
  let books =  [
   {url: "https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B300%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&product=path%5B/pimages/9780316579940_p0_v1%5D&call=url%5Bfile:common/decodeProduct.chain%5D",
@@ -74,5 +64,54 @@ searchForm.addEventListener('submit', (e) =>{
                    title: "Powerfull",
                    author:"by Lauren Roberts"}];
 
+// Function that will display all books on the first page
 
- 
+function booksDisplayed () {
+  const bookContainer = document.getElementById("bookSection"); 
+  books.forEach(book => {
+      const bookList = document.createElement("ul"); 
+      bookList.classList.add("bookList");
+      bookList.innerHTML += 
+      `<li>${book.url}</li>
+      <li>${book.title}</li>
+      <li>${book.author}</li>`
+      
+      bookContainer.appendChild(bookList); 
+  });
+};
+
+document.addEventListener("DOMContentLoaded", booksDisplayed()); 
+
+//Funtion for a search button - books from the Home page will be hidden after user clicks on the search button, only results will be displayed;
+
+const searchButton = document.getElementById("searchButton"); 
+
+searchButton.addEventListener('click', () => {
+  document.getElementById("bookSection").classList.add("hidden"); 
+  const bookResults = document.getElementById("bookResults");
+  const searchInput = document.getElementById("searchInput").value.toLowerCase().trim();
+
+
+  let filteredBooks = books.filter(book => {
+    return book.title.toLowerCase().includes(searchInput) || book.author.toLowerCase().includes(searchInput)
+
+  });
+
+  if (filteredBooks.length > 0) {
+      bookResults.innerHTML = "";
+      filteredBooks.forEach(book => {
+        const foundBooks = document.createElement("ul");
+        foundBooks.classList.add("foundBooks"); 
+        foundBooks.innerHTML += 
+        `<li>${book.url}</li>
+        <li>${book.title}</li>
+        <li>${book.author}</li>`
+        
+      bookResults.appendChild(foundBooks);
+
+      });
+  } else {
+    bookResults.textContent = "No books with that title/author found."
+  };
+
+});
