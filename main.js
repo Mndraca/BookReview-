@@ -39,28 +39,28 @@
           {image: "images/img13.webp",
            title: "Eruption",
             author:"by Michael Crichton"},
-           {image: "images/img.14",
+           {image: "images/img14.webp",
             title: "Misfits",
              author:"by Lisa Yee"},
-             {image: "images/img.15",
+             {image: "images/img15.webp",
              title: "i live inside a while",
               author:"by Xin Li"},
-              {image: "images/img.16",
+              {image: "images/img16.webp",
               title: "Shameless",
                author:"by Brian Tyler Cohen"},
-               {image: "images/img.17",
+               {image: "images/img17.webp",
                title: "Hounting Adeline",
                 author:"by H. D. Carlton"},
-                {image: "images/img.18",
+                {image: "images/img18.webp",
                 title: "A Demon of unrest",
                  author:"by Erik Larson"},
-                 {image: "images/img.19",
+                 {image: "images/img19.webp",
                  title: "Bits and Pieces",
                   author:"by Whoopi Goldberg"},
-                  {image: "images/img.20",
+                  {image: "images/img20.webp",
                   title: "An offer from a gentelmen",
                    author:"by Julia Quinn"},
-                   {image: "images/img.21",
+                   {image: "images/img21.webp",
                    title: "Powerfull",
                    author:"by Lauren Roberts"}];
 
@@ -72,7 +72,7 @@ function booksDisplayed () {
       const bookList = document.createElement("ul"); 
       bookList.classList.add("bookList");
       bookList.innerHTML += 
-      `<li>${book.url}</li>
+      `<li><img src="${book.image}"></li>
       <li>${book.title}</li>
       <li>${book.author}</li>`
       
@@ -86,24 +86,29 @@ document.addEventListener("DOMContentLoaded", booksDisplayed());
 
 const searchButton = document.getElementById("searchButton"); 
 
-searchButton.addEventListener('click', () => {
+searchButton.addEventListener('click', (event) => {
+  event.preventDefault(); 
   document.getElementById("bookSection").classList.add("hidden"); 
   const bookResults = document.getElementById("bookResults");
   const searchInput = document.getElementById("searchInput").value.toLowerCase().trim();
 
 
   let filteredBooks = books.filter(book => {
-    return book.title.toLowerCase().includes(searchInput) || book.author.toLowerCase().includes(searchInput)
+   return book.title.toLowerCase().includes(searchInput) || book.author.toLowerCase().includes(searchInput)
 
   });
-
+  if (!searchInput){
+    bookResults.textContent = "Please enter a book or author that you want to review.";
+    return;
+  }
+  bookResults.innerHTML = "";
   if (filteredBooks.length > 0) {
       bookResults.innerHTML = "";
       filteredBooks.forEach(book => {
         const foundBooks = document.createElement("ul");
         foundBooks.classList.add("foundBooks"); 
         foundBooks.innerHTML += 
-        `<li>${book.url}</li>
+        `<li><img src="${book.image}"></li>
         <li>${book.title}</li>
         <li>${book.author}</li>`
         
