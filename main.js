@@ -61,14 +61,21 @@ searchButton.addEventListener('click', (event) => {
   if (filteredBooks.length > 0) {
       bookResults.innerHTML = "";
       filteredBooks.forEach(book => {
-        const foundBooks = document.createElement("ul");
-        foundBooks.classList.add("foundBooks"); 
-        foundBooks.innerHTML += 
-        `<li><img src="${book.image}"></li>
-        <li>${book.title}</li>
-        <li>${book.author}</li>`;
+        const foundBooksImage = document.createElement("div");
+        foundBooksImage.classList.add("foundBooksImage"); 
+        foundBooksImage.innerHTML += 
+        `<img src="${book.image}">
+        `
+        const foundBooksText = document.createElement("div");
+        foundBooksText.classList.add("foundBooksText");
+        foundBooksText.innerHTML +=`
+        <h1>${book.title}</h1>
+        <h2>${book.author}</h2>
+        `;
         
-        bookResults.appendChild(foundBooks);
+        bookResults.appendChild(foundBooksImage);
+        bookResults.appendChild(foundBooksText);
+
       });
 
       const reviewField = document.createElement("input");
