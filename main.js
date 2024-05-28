@@ -1,37 +1,41 @@
 let books =  [
-  {image: "images/img1.webp", title: "Swan Song", author:"by Elin Hilderbrand"}, 
-  {image: "images/img2.webp", title: "Onix Storm", author:"by Rebecca Yarros"}, 
-  {image: "images/img3.webp", title: "Not in Love", author:"by Ali Hazelwood"},
-  {image: "images/img4.webp", title: "Learher & Lark", author:"by Brynne Weaver"},
-  {image: "images/img5.webp", title: "Reckless", author:"by Lauren Roberts"},
-  {image: "images/img6.webp", title: "Good Energy", author:"by Casey Means MD"},
-  {image: "images/img7.webp", title: "Zodiac Academy", author:"by Caroline Peckham"},
-  {image: "images/img8.webp", title: "The Women", author:"by Kristin Hannah"},
-  {image: "images/img9.webp", title: "Murdle", author:"by G. T. Karber"},
-  {image: "images/img10.webp", title: "Skyshade", author:"by Alex Aster"},
-  {image: "images/img11.webp", title: "You Like It Darker", author:"by Stephen King"},
-  {image: "images/img12.webp", title: "Let's Find Pokemon", author:"by Kazunori Aihara"}, 
-  {image: "images/img13.webp", title: "Eruption", author:"by Michael Crichton"},
-  {image: "images/img14.webp", title: "Misfits", author:"by Lisa Yee"},
-  {image: "images/img15.webp", title: "i live inside a while", author:"by Xin Li"},
-  {image: "images/img16.webp", title: "Shameless", author:"by Brian Tyler Cohen"},
-  {image: "images/img17.webp", title: "Haunting Adeline", author:"by H. D. Carlton"},
-  {image: "images/img18.webp", title: "A Demon of Unrest", author:"by Erik Larson"},
-  {image: "images/img19.webp", title: "Bits and Pieces", author:"by Whoopi Goldberg"},
-  {image: "images/img20.webp", title: "An Offer from a Gentleman", author:"by Julia Quinn"},
-  {image: "images/img21.webp", title: "Powerful", author:"by Lauren Roberts"}
+  {id: 1, image: "images/img1.webp", title: "Swan Song", author:"by Elin Hilderbrand"}, 
+  {id: 2, image: "images/img2.webp", title: "Onix Storm", author:"by Rebecca Yarros"}, 
+  {id: 3, image: "images/img3.webp", title: "Not in Love", author:"by Ali Hazelwood"},
+  {id: 4, image: "images/img4.webp", title: "Learher & Lark", author:"by Brynne Weaver"},
+  {id: 5, image: "images/img5.webp", title: "Reckless", author:"by Lauren Roberts"},
+  {id: 6, image: "images/img6.webp", title: "Good Energy", author:"by Casey Means MD"},
+  {id: 7, image: "images/img7.webp", title: "Zodiac Academy", author:"by Caroline Peckham"},
+  {id: 8, image: "images/img8.webp", title: "The Women", author:"by Kristin Hannah"},
+  {id: 9, image: "images/img9.webp", title: "Murdle", author:"by G. T. Karber"},
+  {id: 10, image: "images/img10.webp", title: "Skyshade", author:"by Alex Aster"},
+  {id: 11, image: "images/img11.webp", title: "You Like It Darker", author:"by Stephen King"},
+  {id: 12, image: "images/img12.webp", title: "Let's Find Pokemon", author:"by Kazunori Aihara"}, 
+  {id: 13, image: "images/img13.webp", title: "Eruption", author:"by Michael Crichton"},
+  {id: 14, image: "images/img14.webp", title: "Misfits", author:"by Lisa Yee"},
+  {id: 15, image: "images/img15.webp", title: "i live inside a while", author:"by Xin Li"},
+  {id: 16, image: "images/img16.webp", title: "Shameless", author:"by Brian Tyler Cohen"},
+  {id: 17, image: "images/img17.webp", title: "Haunting Adeline", author:"by H. D. Carlton"},
+  {id: 18, image: "images/img18.webp", title: "A Demon of Unrest", author:"by Erik Larson"},
+  {id: 19, image: "images/img19.webp", title: "Bits and Pieces", author:"by Whoopi Goldberg"},
+  {id: 20, image: "images/img20.webp", title: "An Offer from a Gentleman", author:"by Julia Quinn"},
+  {id: 21, image: "images/img21.webp", title: "Powerful", author:"by Lauren Roberts"}
 ];
+
 
 // Function that will display all books on the first page
 function booksDisplayed () {
   const bookContainer = document.getElementById("bookSection"); 
+  document.getElementById("favorites").classList.add("hidden");
   books.forEach(book => {
       const bookList = document.createElement("ul"); 
       bookList.classList.add("bookList");
       bookList.innerHTML += 
       `<li><img src="${book.image}"></li>
       <li>${book.title}</li>
-      <li>${book.author}</li>`;
+      <li>${book.author}</li>
+      <li><button onclick="addToFavorites(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button></li>
+      `;
       
       bookContainer.appendChild(bookList); 
   });
@@ -71,7 +75,8 @@ searchButton.addEventListener('click', (event) => {
         foundBooksText.innerHTML +=`
         <h1>${book.title}</h1>
         <h2>${book.author}</h2>
-        `;
+        <button onclick="addToFavorites(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+      `;
         
         bookResults.appendChild(foundBooksImage);
         bookResults.appendChild(foundBooksText);
@@ -117,4 +122,25 @@ searchButton.addEventListener('click', (event) => {
     bookResults.textContent = "No books with that title/author found.";
   }
 });
+
+
+const favoriteBooksIds = new Set();
+
+function addToFavorites(bookId) {
+    document.getElementById("favorites").classList.remove("hidden");
+    const book = books.find(book => book.id === bookId);
+    if (!book || favoriteBooksIds.has(bookId)) return;
+
+    const favoriteBooksList = document.getElementById('favorites');
+    const clonedBooks = document.createElement('li');
+    clonedBooks.className = "cloned";
+    clonedBooks.innerHTML = `
+    <li><img src="${book.image}"></li>
+    <li>${book.title}</li>
+    <li>${book.author}</li>`
+    ;
+    favoriteBooksList.appendChild(clonedBooks);
+
+    favoriteBooksIds.add(bookId);
+}
 
