@@ -143,6 +143,9 @@ padding: 10px;
 .hidden{
     display: none;
 }
+.cloned{
+    list-style-type: none;
+}
 footer {
     background-color: #333;
     color: #fff;
