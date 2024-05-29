@@ -30,7 +30,7 @@ function booksDisplayed () {
   books.forEach(book => {
       const bookList = document.createElement("ul"); 
       bookList.classList.add("bookList");
-      bookList.innerHTML += 
+      bookList.innerHTML +=
       `<li><img src="${book.image}"></li>
       <li>${book.title}</li>
       <li>${book.author}</li>
@@ -98,7 +98,9 @@ searchButton.addEventListener('click', (event) => {
         let reviewField = document.getElementById('reviewField');
         let reviewContainer = document.createElement('div');
         let review = document.createElement('p');
+        
         review.innerText = `${reviewField.value}`;
+        
         reviewContainer.appendChild(review);
 
         let deleteButton = document.createElement('button');
@@ -108,8 +110,11 @@ searchButton.addEventListener('click', (event) => {
 
         if (reviewField.value === "") {
           alert ('Please Enter Review');
-        } else {
+          return;
+        }
+         else {
           bookResults.appendChild(reviewContainer);
+         filteredBooks.forEach(book => book.review = reviewField.value);
         }
         reviewField.value = "";
 
@@ -121,6 +126,7 @@ searchButton.addEventListener('click', (event) => {
   } else {
     bookResults.textContent = "No books with that title/author found.";
   }
+
 });
 
 
@@ -128,19 +134,30 @@ const favoriteBooksIds = new Set();
 
 function addToFavorites(bookId) {
     document.getElementById("favorites").classList.remove("hidden");
+    document.getElementById("bookSection").classList.add("hidden");
     const book = books.find(book => book.id === bookId);
     if (!book || favoriteBooksIds.has(bookId)) return;
 
     const favoriteBooksList = document.getElementById('favorites');
     const clonedBooks = document.createElement('li');
+    
     clonedBooks.className = "cloned";
     clonedBooks.innerHTML = `
     <li><img src="${book.image}"></li>
     <li>${book.title}</li>
-    <li>${book.author}</li>`
+    <li>${book.author}</li>
+    <li><i>Review: ${book.review}</i></li>
+    <li><button id="removeFromFavorites" onclick="removeFromFavorites${bookId}">Remove from favorites</button></li>
+    `
     ;
+
     favoriteBooksList.appendChild(clonedBooks);
 
     favoriteBooksIds.add(bookId);
 }
+
+//function removeFromFavorites (bookId) { 
+  //const book = books.find(book => book.id === bookId);
+//}
+
 
