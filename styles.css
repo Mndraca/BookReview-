@@ -165,6 +165,9 @@ img {
 .hidden {
   display: none;
 }
+.remove-button{
+  margin-left: 13.5rem;
+}
 
 footer {
   background-color: var(--primary-bg-color);
