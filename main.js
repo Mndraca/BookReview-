@@ -252,3 +252,17 @@ function addToFavorites(bookId) {
 //function removeFromFavorites (bookId) {
 //const book = books.find(book => book.id === bookId);
 //}
+document.getElementById('newBookForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const title = document.getElementById('title').value;
+  const author = document.getElementById('author').value;
+  const image = document.getElementById('image').value;
+  const newBook = { title, author, image, };
+
+  books.push(newBook);
+  booksDisplayed(books);
+
+  // Clear the form
+  document.getElementById('newBookForm').reset();
+});
