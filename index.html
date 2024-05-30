@@ -4,24 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/ccc34757e2.js" crossorigin="anonymous"></script>
-    <title>Book Review App</title>
+    <title>Book Club</title>
     <link rel="stylesheet" href="styles.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 </head>
 <body>
     <header>
         <div class="header-container">
             <nav>
                 <ul>
-                    <li><a href="#bookSection">Home</a></li>
-                    <li><a href="#">Saved Review</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#home-page">Home</a></li>
+                    <li><a href="#bookResults">Saved Review</a></li>
+                    <li><a href="#footer-section-three">Contact Us</a></li>
                 </ul>
             </nav>
             <h1>Book Review App</h1>
     <form>
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search for books..." required>
-                <button id="searchButton">Search</button>
+                <button id="searchButton">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
             </div>
     </form>
 </header>
@@ -46,8 +55,20 @@
     </div>
     <div id="footer-section-three" class="footer-section">
         <h3>Contact Us</h3>
-        <p>Email: info@bookreviewapp.com</p>
+        <p>Email: info@bookclub.com</p>
         <p>Phone: (123) 456-7890</p>
+    </div>
+    <div id="addBookForm">
+        <h2>Add a New Book</h2>
+        <form id="newBookForm">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" placeholder="title here..." required><br>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" placeholder="author here..." required><br>
+            <label for="image">Image (URL):</label>
+            <input type="text" id="image" name="image" placeholder="picture URL here..." required><br>
+            <button type="submit">Add a new book</button>
+        </form>
     </div>
 </div>
 <div class="footer-bottom">
