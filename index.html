@@ -13,10 +13,22 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="header-container">
+            <h1 class="title">Book Club</h1>
+        <form>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for books..." required>
+                    <button id="searchButton">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                      </button>
+                </div>
+        </form>
             <nav>
                 <ul>
                     <li><a id="homePage" href="#bookSection">Home</a></li>
@@ -25,15 +37,6 @@
                     <li><a href="#">Contact Us</a></li>
                 </ul>
             </nav>
-            <h1 class="title">Book Club</h1>
-    <form>
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for books..." required>
-                <button id="searchButton">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </button>
-            </div>
-    </form>
 </header>
     <div class="bookSection" id="bookSection">
     </div>
