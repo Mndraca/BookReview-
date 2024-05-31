@@ -94,7 +94,7 @@ nav ul li a:hover {
   transform: scale(1.3);
 }
 
-h1 {
+.title {
   margin: 0;
   font-size: 60px;
   font-weight: 900;
@@ -123,8 +123,13 @@ input[type="text"] {
 }
 
 img {
-  width: 250px;
-  height: 322px;
+  width: 200px;
+  height: 292px;
+  border-radius: 12px;
+}
+li img {
+  width: 200px;
+  height: 292px;
   border-radius: 12px;
 }
 
@@ -172,9 +177,7 @@ img {
   list-style-type: none;
   padding: 2%;
 }
-.book-title {
-  font-size: 1.4em;
-}
+
 .book-author {
   font-size: 0.8em;
   opacity: 50%;
@@ -183,16 +186,43 @@ img {
 .hidden {
   display: none;
 }
-.remove-button{
-  margin-left: 13.5rem;
+.remove-button {
+  background-color: var(--mobile-view-bg-color);
+}
+.li-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#favorites {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.fav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.fav h1 {
+  color: var(--primary-text-color);
+  font-family: cursive;
+}
+.favorites-container {
+  background: linear-gradient(to bottom, #33ccff 0%, #333399 46%);
+  display: flex;
+  flex-direction: column;
 }
 
 footer {
-  background-color: #333;
   color: #fff;
   bottom: 0;
   width: 100%;
   padding-bottom: 10px;
+  background-color: #333399;
+  border-top: 0.8px solid var(--input-border-color);
 }
 
 .footer-container {
@@ -222,7 +252,6 @@ footer {
 .footer-section ul {
   margin: 0;
   padding: 5px 40px;
-  background-color: var(--primary-bg-color);
   color: var(--primary-text-color);
 }
 
@@ -268,8 +297,39 @@ footer {
   border-radius: 9px;
   font-size: 0.8em;
   padding: 10px 10px;
+  margin-bottom: 3%;
 }
-
+p {
+  color: var(--primary-text-color);
+}
+#addReview,
+.deleteReview {
+  background-color: var(--mobile-view-bg-color);
+  color: white;
+  border: 1px solid var(--primary-text-color);
+}
+#reviewField {
+  border: 1px solid var(--mobile-view-bg-color);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  margin-left: 2%;
+}
+input[type="text"]:focus {
+  border: 1px solid var(--mobile-view-bg-color);
+}
+.foundBooksText {
+  margin-left: 2%;
+}
+.foundBooksImg {
+  width: 200px;
+  height: 292px;
+  border-radius: 12px;
+  margin: 2% 0 0 2%;
+}
+.deleteSection {
+  padding: 0 0 2% 2%;
+}
 @media only screen and (max-width: 1226px) {
   nav {
     display: none;
@@ -306,18 +366,9 @@ nav ul li {
 #bookResults {
   flex-direction: row;
   align-items: center;
-  background: rgb(36, 0, 0);
-  background: linear-gradient(
-    351deg,
-    rgba(36, 0, 0, 1) 0%,
-    rgba(16, 16, 60, 1) 19%,
-    rgba(0, 212, 255, 1) 70%
-  );
+  background: linear-gradient(to bottom, #33ccff 19%, #333399 89%);
 }
-.book-title {
-  font-size: 1.1em;
-  color: var(--primary-text-color);
-}
+
 .book-author {
   font-size: 0.6em;
   color: var(--primary-text-color);
@@ -327,11 +378,10 @@ img {
   width: 100%;
   height: auto;
 }
-#bookResults img {
-  width: 50%;
-}
+
 #bookResults h1 {
   font-size: 1em;
+  margin-bottom: 0;
 }
 #bookResults h2 {
   font-size: 0.7em;
@@ -359,17 +409,29 @@ img {
 }
 .book-author {
   color: var(--primary-text-color);
-  font-size: 1em;
+  font-size: 0.9em;
 }
 .book-title {
   color: var(--primary-text-color);
-  font-size: 0.8em;
+  font-size: 1.2em;
 }
 
 @media (max-width: 500px) {
   .bookList {
-    width: 48%;
     margin-bottom: 20px;
+  }
+  li img {
+    width: 140px;
+    height: 192px;
+  }
+  .book-title {
+    font-size: 0.7em;
+  }
+  .book-author {
+    font-size: 0.5em;
+  }
+  .bookList button {
+    font-size: 0.5em;
   }
 }
 #addBookForm {

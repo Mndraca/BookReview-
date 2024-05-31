@@ -121,17 +121,18 @@ let books = [
 function booksDisplayed() {
   const bookContainer = document.getElementById("bookSection");
   document.getElementById("favorites").classList.add("hidden");
-  bookContainer.innerHTML = ''; 
+  bookContainer.innerHTML = "";
   books.forEach((book) => {
     const bookList = document.createElement("ul");
     bookList.classList.add("bookList");
     bookList.setAttribute("id", `book-${book.id}`);
     bookList.innerHTML += `
-      <li><button onclick="removeBook(${book.id})" class="remove-button" style="background-color: #f4f4f4; color:#333; border:none " ><i class="far fa-times"></i></button></li>
+      
       <li><img src="${book.image}"></li>
       <li class="book-title">${book.title}</li>
       <li class="book-author">${book.author}</li>
-      <li><button onclick="addToFavorites(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button></li>
+      <li class="li-buttons"><button onclick="addToFavorites(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button><button onclick="removeBook(${book.id})" class="remove-button" border:none " ><i class="fa-regular fa-trash-can"></i></button>
+      </li>
     `;
 
     bookContainer.appendChild(bookList);
@@ -156,7 +157,10 @@ searchButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.getElementById("bookSection").classList.add("hidden");
   const bookResults = document.getElementById("bookResults");
-  const searchInput = document.getElementById("searchInput").value.toLowerCase().trim();
+  const searchInput = document
+    .getElementById("searchInput")
+    .value.toLowerCase()
+    .trim();
 
   let filteredBooks = books.filter((book) => {
     return (
@@ -166,7 +170,8 @@ searchButton.addEventListener("click", (event) => {
   });
 
   if (!searchInput) {
-    bookResults.textContent = "Please enter a book or author that you want to review.";
+    bookResults.textContent =
+      "Please enter a book or author that you want to review.";
     return;
   }
 
@@ -175,8 +180,8 @@ searchButton.addEventListener("click", (event) => {
     filteredBooks.forEach((book) => {
       const foundBooksImage = document.createElement("div");
       foundBooksImage.classList.add("foundBooksImage");
-      foundBooksImage.innerHTML += `<img src="${book.image}">`;
-      
+      foundBooksImage.innerHTML += `<img class="foundBooksImg" src="${book.image}">`;
+
       const foundBooksText = document.createElement("div");
       foundBooksText.classList.add("foundBooksText");
       foundBooksText.innerHTML += `
@@ -203,6 +208,7 @@ searchButton.addEventListener("click", (event) => {
     addReview.addEventListener("click", function () {
       let reviewField = document.getElementById("reviewField");
       let reviewContainer = document.createElement("div");
+      reviewContainer.className = "deleteSection";
       let review = document.createElement("p");
 
       review.innerText = `${reviewField.value}`;
@@ -246,9 +252,9 @@ function addToFavorites(bookId) {
   clonedBooks.className = "bookList";
   clonedBooks.innerHTML = `
     <li><img src="${book.image}"></li>
-    <li>${book.title}</li>
-    <li>${book.author}</li>
-    ${book.review ? `<li><i>Review: ${book.review}</i></li>` : ''}
+    <li class="book-title">${book.title}</li>
+    <li class="book-author">${book.author}</li>
+    ${book.review ? `<li><i>Review: ${book.review}</i></li>` : ""}
     <li><button id="removeFromFavorites" onclick="removeFromFavorites(${bookId})">Remove from favorites</button></li>
   `;
 
@@ -270,28 +276,27 @@ function removeFromFavorites(bookId) {
   }
 }
 
+const favoritesLink = document.getElementById("favoritesLink");
+favoritesLink.addEventListener("click", () => {
+  document.getElementById("favorites").classList.remove("hidden");
+});
 
-const favoritesLink = document.getElementById("favoritesLink"); 
-  favoritesLink.addEventListener('click', () => {
-  document.getElementById("favorites").classList.remove("hidden"); 
-} )
-
-const homePage = document.getElementById("homePage"); 
-homePage.addEventListener('click', () => {
+const homePage = document.getElementById("homePage");
+homePage.addEventListener("click", () => {
   document.getElementById("bookSection").classList.remove("hidden");
   document.getElementById("bookResults").classList.add("hidden");
-} )
-document.getElementById('newBookForm').addEventListener('submit', (e) => {
+});
+document.getElementById("newBookForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const title = document.getElementById('title').value;
-  const author = document.getElementById('author').value;
-  const image = document.getElementById('image').value;
-  const newBook = { title, author, image, };
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const image = document.getElementById("image").value;
+  const newBook = { title, author, image };
 
   books.push(newBook);
   booksDisplayed(books);
 
   // Clear the form
-  document.getElementById('newBookForm').reset();
+  document.getElementById("newBookForm").reset();
 });
