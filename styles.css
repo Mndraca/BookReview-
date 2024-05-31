@@ -299,6 +299,7 @@ footer {
   padding: 10px 10px;
   margin-bottom: 3%;
 }
+
 p {
   color: var(--primary-text-color);
 }
@@ -459,3 +460,4 @@ img {
 #addBookForm form button {
   margin-top: 10px;
 }
+

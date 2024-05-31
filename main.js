@@ -134,10 +134,16 @@ function booksDisplayed() {
       <li class="li-buttons"><button onclick="addToFavorites(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button><button onclick="removeBook(${book.id})" class="remove-button" border:none " ><i class="fa-regular fa-trash-can"></i></button>
       </li>
     `;
-
+  
+  
     bookContainer.appendChild(bookList);
+    
+  
   });
-}
+  
+};
+
+
 
 document.addEventListener("DOMContentLoaded", booksDisplayed);
 
@@ -187,12 +193,15 @@ searchButton.addEventListener("click", (event) => {
       foundBooksText.innerHTML += `
         <h1 class="book-title">${book.title}</h1>
         <h2 class="book-author">${book.author}</h2>
-        <button onclick="addToFavorites(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+        <button onclick="addToFavorites(${book.id});">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+    
       `;
 
       bookResults.appendChild(foundBooksImage);
       bookResults.appendChild(foundBooksText);
     });
+
+   
 
     const reviewField = document.createElement("input");
     reviewField.setAttribute("type", "text");
@@ -245,7 +254,7 @@ function addToFavorites(bookId) {
 
   const book = books.find((book) => book.id === bookId);
   if (!book || favoriteBooksIds.has(bookId)) return;
-
+  
   const favoriteBooksList = document.getElementById("favorites");
   const clonedBooks = document.createElement("li");
 
@@ -257,11 +266,11 @@ function addToFavorites(bookId) {
     ${book.review ? `<li><i>Review: ${book.review}</i></li>` : ""}
     <li><button id="removeFromFavorites" onclick="removeFromFavorites(${bookId})">Remove from favorites</button></li>
   `;
-
   favoriteBooksList.appendChild(clonedBooks);
 
   favoriteBooksIds.add(bookId);
 }
+
 
 function removeFromFavorites(bookId) {
   favoriteBooksIds.delete(bookId);
@@ -297,6 +306,8 @@ document.getElementById("newBookForm").addEventListener("submit", (e) => {
   books.push(newBook);
   booksDisplayed(books);
 
-  // Clear the form
+ 
   document.getElementById("newBookForm").reset();
 });
+
+
