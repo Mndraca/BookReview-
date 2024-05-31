@@ -131,7 +131,7 @@ function booksDisplayed() {
       <li class="book-title">${book.title}</li>
       <li class="book-author">${book.author}</li>
       <li class="li-buttons">
-        <button id="fav-btn-${book.id}" onclick="toggleFavorite(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+        <button id="fav-btn-${book.id}">Add to Favorites <i class="fa-regular fa-heart"></i></button>
         <button onclick="removeBook(${book.id})" class="remove-button"><i class="fa-regular fa-trash-can"></i></button>
       </li>
     `;
