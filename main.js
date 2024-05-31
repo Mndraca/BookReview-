@@ -127,11 +127,12 @@ function booksDisplayed() {
     bookList.classList.add("bookList");
     bookList.setAttribute("id", `book-${book.id}`);
     bookList.innerHTML += `
-      
       <li><img src="${book.image}"></li>
       <li class="book-title">${book.title}</li>
       <li class="book-author">${book.author}</li>
-      <li class="li-buttons"><button onclick="addToFavorites(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button><button onclick="removeBook(${book.id})" class="remove-button" border:none " ><i class="fa-regular fa-trash-can"></i></button>
+      <li class="li-buttons">
+        <button id="fav-btn-${book.id}" onclick="toggleFavorite(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+        <button onclick="removeBook(${book.id})" class="remove-button"><i class="fa-regular fa-trash-can"></i></button>
       </li>
     `;
   
@@ -148,11 +149,15 @@ function booksDisplayed() {
 document.addEventListener("DOMContentLoaded", booksDisplayed);
 
 function removeBook(bookId) {
-  books = books.filter((book) => book.id === bookId);
+  books = books.filter((book) => book.id !== bookId);
 
   const bookElement = document.getElementById(`book-${bookId}`);
   if (bookElement) {
     bookElement.remove();
+  }
+
+  if (favoriteBooksIds.has(bookId)) {
+    removeFromFavorites(bookId);
   }
 }
 
@@ -163,10 +168,7 @@ searchButton.addEventListener("click", (event) => {
   event.preventDefault();
   document.getElementById("bookSection").classList.add("hidden");
   const bookResults = document.getElementById("bookResults");
-  const searchInput = document
-    .getElementById("searchInput")
-    .value.toLowerCase()
-    .trim();
+  const searchInput = document.getElementById("searchInput").value.toLowerCase().trim();
 
   let filteredBooks = books.filter((book) => {
     return (
@@ -176,8 +178,7 @@ searchButton.addEventListener("click", (event) => {
   });
 
   if (!searchInput) {
-    bookResults.textContent =
-      "Please enter a book or author that you want to review.";
+    bookResults.textContent = "Please enter a book or author that you want to review.";
     return;
   }
 
@@ -249,6 +250,14 @@ searchButton.addEventListener("click", (event) => {
 
 const favoriteBooksIds = new Set();
 
+function toggleFavorite(bookId) {
+  if (favoriteBooksIds.has(bookId)) {
+    removeFromFavorites(bookId);
+  } else {
+    addToFavorites(bookId);
+  }
+}
+
 function addToFavorites(bookId) {
   document.getElementById("favorites").classList.remove("hidden");
 
@@ -256,9 +265,10 @@ function addToFavorites(bookId) {
   if (!book || favoriteBooksIds.has(bookId)) return;
   
   const favoriteBooksList = document.getElementById("favorites");
-  const clonedBooks = document.createElement("li");
+  const clonedBooks = document.createElement("ul");
 
   clonedBooks.className = "bookList";
+  clonedBooks.setAttribute("id", `favoriteBook-${bookId}`); 
   clonedBooks.innerHTML = `
     <li><img src="${book.image}"></li>
     <li class="book-title">${book.title}</li>
@@ -271,13 +281,18 @@ function addToFavorites(bookId) {
   favoriteBooksIds.add(bookId);
 }
 
-
 function removeFromFavorites(bookId) {
   favoriteBooksIds.delete(bookId);
 
   const favoriteBookElement = document.getElementById(`favoriteBook-${bookId}`);
   if (favoriteBookElement) {
     favoriteBookElement.remove();
+  }
+
+  const favButton = document.getElementById(`fav-btn-${bookId}`);
+  if (favButton) {
+    favButton.innerHTML = 'Add to Favorites <i class="fa-regular fa-heart"></i>';
+    favButton.style.backgroundColor = '';
   }
 
   if (favoriteBooksIds.size === 0) {
@@ -288,6 +303,7 @@ function removeFromFavorites(bookId) {
 const favoritesLink = document.getElementById("favoritesLink");
 favoritesLink.addEventListener("click", () => {
   document.getElementById("favorites").classList.remove("hidden");
+  document.getElementById("bookSection").classList.add("hidden");
 });
 
 const homePage = document.getElementById("homePage");
@@ -295,13 +311,19 @@ homePage.addEventListener("click", () => {
   document.getElementById("bookSection").classList.remove("hidden");
   document.getElementById("bookResults").classList.add("hidden");
 });
+
 document.getElementById("newBookForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const image = document.getElementById("image").value;
-  const newBook = { title, author, image };
+  const newBook = {
+    id: books.length + 1, // Ensure new books have a unique ID
+    title,
+    author,
+    image,
+  };
 
   books.push(newBook);
   booksDisplayed(books);
@@ -309,5 +331,3 @@ document.getElementById("newBookForm").addEventListener("submit", (e) => {
  
   document.getElementById("newBookForm").reset();
 });
-
-
