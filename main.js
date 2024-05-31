@@ -128,8 +128,8 @@ function booksDisplayed() {
     bookList.setAttribute("id", `book-${book.id}`);
     bookList.innerHTML += `
       <li><img src="${book.image}"></li>
-      <li class="book-title">${book.title}</li>
-      <li class="book-author">${book.author}</li>
+      <li class="book-title" id="title-${book.id}" contenteditable="true">${book.title}</li>
+      <li class="book-author" id="author-${book.id}" contenteditable="true">${book.author}</li>
       <li class="li-buttons">
         <button id="fav-btn-${book.id}" onclick="toggleFavorite(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button>
         <button onclick="removeBook(${book.id})" class="remove-button"><i class="fa-regular fa-trash-can"></i></button>
@@ -137,6 +137,25 @@ function booksDisplayed() {
     `;
 
     bookContainer.appendChild(bookList);
+
+    //function to edit content and make it wisible in favorite section
+ const bookTitleElement = document.getElementById(`title-${book.id}`);
+ console.log(bookTitleElement);
+      if (bookTitleElement) {
+          bookTitleElement.addEventListener('input', function(event) {
+              const bookTitle = event.target.textContent;
+              book.title = bookTitle;
+          });
+      }
+ const bookAuthorElement = document.getElementById(`author-${book.id}`);
+ console.log(bookAuthorElement);
+      if (bookAuthorElement) {
+         bookAuthorElement.addEventListener('input', function(event) {
+             const bookAuthor = event.target.textContent;
+             book.author = bookAuthor;
+          });
+      }
+
   });
 }
 
