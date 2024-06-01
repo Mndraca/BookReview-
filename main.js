@@ -348,3 +348,4 @@ document.getElementById("newBookForm").addEventListener("submit", (e) => {
  
   document.getElementById("newBookForm").reset();
 });
+
