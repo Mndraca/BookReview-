@@ -117,7 +117,7 @@ let books = [
   },
 ];
 
-// Function that will display all books on the first page
+
 function booksDisplayed() {
   const bookContainer = document.getElementById("bookSection");
   document.getElementById("favorites").classList.add("hidden");
@@ -135,27 +135,22 @@ function booksDisplayed() {
         <button onclick="removeBook(${book.id})" class="remove-button"><i class="fa-regular fa-trash-can"></i></button>
       </li>
     `;
-
     bookContainer.appendChild(bookList);
 
-    //function to edit content and make it wisible in favorite section
- const bookTitleElement = document.getElementById(`title-${book.id}`);
- console.log(bookTitleElement);
-      if (bookTitleElement) {
-          bookTitleElement.addEventListener('input', function(event) {
-              const bookTitle = event.target.textContent;
-              book.title = bookTitle;
-          });
-      }
- const bookAuthorElement = document.getElementById(`author-${book.id}`);
- console.log(bookAuthorElement);
-      if (bookAuthorElement) {
-         bookAuthorElement.addEventListener('input', function(event) {
-             const bookAuthor = event.target.textContent;
-             book.author = bookAuthor;
-          });
-      }
-
+    const bookTitleElement = document.getElementById(`title-${book.id}`);
+    if (bookTitleElement) {
+      bookTitleElement.addEventListener('input', function (event) {
+        const bookTitle = event.target.textContent;
+        book.title = bookTitle;
+      });
+    }
+    const bookAuthorElement = document.getElementById(`author-${book.id}`);
+    if (bookAuthorElement) {
+      bookAuthorElement.addEventListener('input', function (event) {
+        const bookAuthor = event.target.textContent;
+        book.author = bookAuthor;
+      });
+    }
   });
 }
 
@@ -163,18 +158,15 @@ document.addEventListener("DOMContentLoaded", booksDisplayed);
 
 function removeBook(bookId) {
   books = books.filter((book) => book.id !== bookId);
-
   const bookElement = document.getElementById(`book-${bookId}`);
   if (bookElement) {
     bookElement.remove();
   }
-
   if (favoriteBooksIds.has(bookId)) {
-    removeFromFavorites(bookId);
+    removeFromFavorites(bookId, `fav-btn-${bookId}`);
   }
 }
 
-// Function for a search button - books from the Home page will be hidden after user clicks on the search button, only results will be displayed
 const searchButton = document.getElementById("searchButton");
 
 searchButton.addEventListener("click", (event) => {
@@ -284,12 +276,13 @@ function addToFavorites(bookId, buttonId) {
     <li class="book-title">${book.title}</li>
     <li class="book-author">${book.author}</li>
     ${book.review ? `<li><i>Review: ${book.review}</i></li>` : ""}
-    <li><button id="removeFromFavorites" onclick="removeFromFavorites(${bookId})">Remove from favorites</button></li>
+    <li><button id="removeFromFavorites" onclick="removeFromFavorites(${bookId}, 'fav-btn-${bookId}', 'search-fav-btn-${bookId}')">Remove from favorites</button></li>
   `;
 
   favoriteBooksList.appendChild(clonedBooks);
 
   favoriteBooksIds.add(bookId);
+
   updateFavoriteButton(buttonId, true);
 }
 
@@ -308,6 +301,7 @@ function removeFromFavorites(bookId, homeButtonId, searchButtonId) {
     document.getElementById("favorites").classList.add("hidden");
   }
 }
+
 function updateFavoriteButton(buttonId, isFavorite) {
   const favButton = document.getElementById(buttonId);
   if (favButton) {
@@ -346,11 +340,9 @@ document.getElementById("newBookForm").addEventListener("submit", (e) => {
   books.push(newBook);
   booksDisplayed(books);
 
-  // Clear the form
   document.getElementById("newBookForm").reset();
 });
 
-// Toggle Button for Background Color Change 
 const toggleButton = document.querySelector("#check");
 const body = document.querySelector(".bookSection");
 const header = document.querySelector(".header");
