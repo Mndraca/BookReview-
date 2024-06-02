@@ -106,7 +106,7 @@ let books = [
   {
     id: 20,
     image: "images/img20.webp",
-    title: "An Offer from a Man",
+    title: "An Offer from a Gentleman",
     author: "Julia Quinn",
   },
   {
@@ -120,8 +120,8 @@ let books = [
 
 function booksDisplayed() {
   const bookContainer = document.getElementById("bookSection");
-  document.getElementById("favorites-h").classList.add("hidden");
-  document.getElementById("saved-review").classList.add("hidden"); //hide saved reviewed field when content loaded
+  document.getElementById("favorites-h").classList.add("hidden"); 
+  document.getElementById("saved-h").classList.add("hidden"); 
   bookContainer.innerHTML = "";
   books.forEach((book) => {
     const bookList = document.createElement("ul");
@@ -198,26 +198,35 @@ searchButton.addEventListener("click", (event) => {
       const foundBooksText = document.createElement("div");
       foundBooksText.classList.add("foundBooksText");
       foundBooksText.innerHTML += `
-      <h1 class="book-title">${book.title}</h1>
-      <h2 class="book-author">${book.author}</h2>
-      <button id="fav-btn-${book.id}" onclick="toggleFavorite(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button>
-      <input type="text" id="reviewField-${book.id}">
-      <button id="addReview-${book.id}">Add Review</button>
-
-    `;
+        <h1 class="book-title">${book.title}</h1>
+        <h2 class="book-author">${book.author}</h2>
+        <button id="search-fav-btn-${book.id}" onclick="toggleFavorite(${book.id}, 'search-fav-btn-${book.id}')">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+      `;
 
       bookResults.appendChild(foundBooksImage);
       bookResults.appendChild(foundBooksText);
-      let addReview = document.getElementById(`addReview-${book.id}`);
-      addReview.addEventListener("click", function () {
-        let reviewField = document.getElementById(`reviewField-${book.id}`);
-        let reviewContainer = document.createElement("div");
-        reviewContainer.className = "deleteSection";
-        let review = document.createElement("p");
-  
-        review.innerText = `${reviewField.value}`;
-  
-        reviewContainer.appendChild(review);
+    });
+
+    const reviewField = document.createElement("input");
+    reviewField.setAttribute("type", "text");
+    reviewField.setAttribute("id", "reviewField");
+    bookResults.appendChild(reviewField);
+
+    let saveButton = document.createElement("button");
+    saveButton.setAttribute("id", "addReview");
+    saveButton.innerText = "Add Review";
+    bookResults.appendChild(saveButton);
+
+    let addReview = document.getElementById("addReview");
+    addReview.addEventListener("click", function () {
+      let reviewField = document.getElementById("reviewField");
+      let reviewContainer = document.createElement("div");
+      reviewContainer.className = "deleteSection";
+      let review = document.createElement("p");
+
+      review.innerText = `${reviewField.value}`;
+
+      reviewContainer.appendChild(review);
 
       let deleteButton = document.createElement("button");
       deleteButton.setAttribute("class", "deleteReview");
@@ -228,27 +237,14 @@ searchButton.addEventListener("click", (event) => {
         alert("Please Enter Review");
         return;
       } else {
-        foundBooksText.appendChild(reviewContainer);
+        bookResults.appendChild(reviewContainer);
         filteredBooks.forEach((book) => (book.review = reviewField.value));
-        const savedReviewDiv = document.getElementById("saved-review");
-               
-        const bookTextWithReview = document.createElement("div");
-        bookTextWithReview.classList.add("foundBooksText");
-        bookTextWithReview.innerHTML += `
-        <img class="foundBooksImg" src="${book.image}">
-        <h1 class="book-title">${book.title}</h1>
-        <h2 class="book-author">${book.author}</h2>
-        ${book.review ? `<p><i>Review: ${book.review}</i></p>` : ""}
-      `;
-        
-        savedReviewDiv.appendChild(bookTextWithReview);
       }
       reviewField.value = "";
 
       deleteButton.addEventListener("click", function () {
         reviewContainer.remove();
       });
-    });
     });
   } else {
     bookResults.textContent = "No books with that title/author found.";
@@ -319,16 +315,14 @@ function updateFavoriteButton(buttonId, isFavorite) {
 
 const favoritesLink = document.getElementById("favoritesLink");
 favoritesLink.addEventListener("click", () => {
-  document.getElementById("favorites").classList.remove("hidden");
+  document.getElementById("favorites-h").classList.remove("hidden");
   document.getElementById("bookSection").classList.add("hidden");
-  document.getElementById("saved-review").classList.add("hidden");
 });
 
 const homePage = document.getElementById("homePage");
 homePage.addEventListener("click", () => {
   document.getElementById("bookSection").classList.remove("hidden");
   document.getElementById("bookResults").classList.add("hidden");
-  document.getElementById("saved-review").classList.add("hidden");
 });
 
 const savedReviewLink = document.getElementById("savedReviewLink");
@@ -405,8 +399,20 @@ function scrollFunction() {
     mybutton.style.display = "none";
   }
 }
-
 mybutton.addEventListener("click", function() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+});
+
+
+// hamburger menu 
+
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+
+document.addEventListener('DOMContentLoaded', () => {
+  hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle("active")
+      navMenu.classList.toggle("active");
+  });
 });
