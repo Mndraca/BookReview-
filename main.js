@@ -349,3 +349,9 @@ document.getElementById("newBookForm").addEventListener("submit", (e) => {
   document.getElementById("newBookForm").reset();
 });
 
+function setCurrentYear() {
+  const currentYear = new Date().getFullYear();
+  document.getElementById('currentYear').textContent = currentYear;
+}
+
+document.addEventListener("DOMContentLoaded", setCurrentYear());
