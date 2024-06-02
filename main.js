@@ -380,8 +380,25 @@ toggleButton.onclick = changeBackground;
 
 function setCurrentYear() {
   const currentYear = new Date().getFullYear();
-  document.getElementById('currentYear').textContent = currentYear;
+  document.getElementById("currentYear").textContent = currentYear;
 }
 
 document.addEventListener("DOMContentLoaded", setCurrentYear());
 
+// add button to scrole to top
+let mybutton = document.getElementById("scrollToTopBtn");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+mybutton.addEventListener("click", function() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+});
