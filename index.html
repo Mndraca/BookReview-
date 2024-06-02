@@ -27,9 +27,6 @@
                     <button id="searchButton">
                         <i class="fa-solid fa-magnifying-glass"></i>
                       </button>
-                      <input type="checkbox" id="check">
-                      <label for="check" class="button"></label>
-
                 </div>
         </form>
             <nav>
@@ -67,11 +64,11 @@
     </div>
     <div id="footer-section-three" class="footer-section">
         <h3>Contact Us</h3>
-        <p>Email: <a href="mailto:info@bookclub.com">info@bookclub.com</a></p>
-        <p>Phone: <a href="tel:123-456-7890">(123) 456-7890</a></p>
+        <p>Email: info@bookclub.com</p>
+        <p>Phone: (123) 456-7890</p>
     </div>
     <div id="addBookForm">
-
+        <h2>Add a New Book</h2>
         <form id="newBookForm">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" placeholder="title here..." required><br>
@@ -84,7 +81,7 @@
     </div>
 </div>
 <div class="footer-bottom">
-    <p>&copy; 2024 Book Club. All rights reserved.</p>
+ <p>&copy;<span id="currentYear"></span> Book Review App. All rights reserved.</p>
 </div>
 </footer>
     <script src="main.js"></script>

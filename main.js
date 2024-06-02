@@ -131,11 +131,12 @@ function booksDisplayed() {
       <li class="book-title" id="title-${book.id}" contenteditable="true">${book.title}</li>
       <li class="book-author" id="author-${book.id}" contenteditable="true">${book.author}</li>
       <li class="li-buttons">
-        <button id="fav-btn-${book.id}" onclick="toggleFavorite(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+        <button id="fav-btn-${book.id}">Add to Favorites <i class="fa-regular fa-heart"></i></button>
         <button onclick="removeBook(${book.id})" class="remove-button"><i class="fa-regular fa-trash-can"></i></button>
       </li>
     `;
-
+  
+  
     bookContainer.appendChild(bookList);
 
     //function to edit content and make it wisible in favorite section
@@ -157,7 +158,10 @@ function booksDisplayed() {
       }
 
   });
-}
+  
+};
+
+
 
 document.addEventListener("DOMContentLoaded", booksDisplayed);
 
@@ -207,12 +211,15 @@ searchButton.addEventListener("click", (event) => {
       foundBooksText.innerHTML += `
         <h1 class="book-title">${book.title}</h1>
         <h2 class="book-author">${book.author}</h2>
-        <button id="fav-btn-${book.id}" onclick="toggleFavorite(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+        <button onclick="addToFavorites(${book.id});">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+    
       `;
 
       bookResults.appendChild(foundBooksImage);
       bookResults.appendChild(foundBooksText);
     });
+
+   
 
     const reviewField = document.createElement("input");
     reviewField.setAttribute("type", "text");
@@ -273,7 +280,7 @@ function addToFavorites(bookId) {
 
   const book = books.find((book) => book.id === bookId);
   if (!book || favoriteBooksIds.has(bookId)) return;
-
+  
   const favoriteBooksList = document.getElementById("favorites");
   const clonedBooks = document.createElement("ul");
 
@@ -286,16 +293,9 @@ function addToFavorites(bookId) {
     ${book.review ? `<li><i>Review: ${book.review}</i></li>` : ""}
     <li><button id="removeFromFavorites" onclick="removeFromFavorites(${bookId})">Remove from favorites</button></li>
   `;
-
   favoriteBooksList.appendChild(clonedBooks);
 
   favoriteBooksIds.add(bookId);
-
-  const favButton = document.getElementById(`fav-btn-${bookId}`);
-  if (favButton) {
-    favButton.innerHTML = 'Added to Favorites <i class="fas fa-heart"></i>';
-    favButton.style.backgroundColor = 'grey';
-  }
 }
 
 function removeFromFavorites(bookId) {
@@ -345,6 +345,13 @@ document.getElementById("newBookForm").addEventListener("submit", (e) => {
   books.push(newBook);
   booksDisplayed(books);
 
-  // Clear the form
+ 
   document.getElementById("newBookForm").reset();
 });
+
+function setCurrentYear() {
+  const currentYear = new Date().getFullYear();
+  document.getElementById('currentYear').textContent = currentYear;
+}
+
+document.addEventListener("DOMContentLoaded", setCurrentYear());
