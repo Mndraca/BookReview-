@@ -35,7 +35,7 @@
             <nav>
                 <ul>
                     <li><a id="homePage" href="#bookSection">Home</a></li>
-                    <li><a href="#">Saved Review</a></li>
+                    <li><a id="savedReviewLink" href="#saved-review">Saved Review</a></li>
                     <li><a id="favoritesLink" href="#favorites">Favorites</a></li>
                     <li><a href="#footer-section-three">Contact Us</a></li>
                 </ul>
@@ -50,6 +50,12 @@
         </div>
         <div id="favorites"></div>
     </div>
+    <!--add new div, class name saved-review-->
+    <div class="saved-review" id="saved-review"> 
+        <h1>Saved Review :</h1>
+    </div>
+    <!--add new button, to scrole to top-->
+    <button id="scrollToTopBtn">&uarr;</button>
 <footer class="footer">
     <div class="footer-container">
     <div class="footer-section">
@@ -84,7 +90,7 @@
     </div>
 </div>
 <div class="footer-bottom">
-    <p>&copy; <span class="currentYear"></span> 2024 Book Club. All rights reserved.</p>
+    <p>&copy; <span id="currentYear"></span>  Book Club. All rights reserved.</p>
 </div>
 </footer>
     <script src="main.js"></script>
