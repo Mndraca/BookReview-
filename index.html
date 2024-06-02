@@ -40,7 +40,7 @@
             <nav>
                 <ul>
                     <li><a id="homePage" href="#bookSection">Home</a></li>
-                    <li><a href="#">Saved Review</a></li>
+                    <li><a id="savedReviewLink" href="#saved-review">Saved Review</a></li>
                     <li><a id="favoritesLink" href="#favorites">Favorites</a></li>
                     <li><a href="#footer-section-three">Contact Us</a></li>
                 </ul>
@@ -51,10 +51,16 @@
     <div id="bookResults"></div>
     <div class="favorites-container">
         <div class="fav">
-            <h1>Favorites :</h1>
+            <h1 id="favorites-h">Favorites :</h1>
         </div>
         <div id="favorites"></div>
     </div>
+<!--add new div, class name saved-review-->
+<div class="saved-review bookSection fav" id="saved-review"> 
+    <h1>Saved Review :</h1>
+</div>
+<!--add new button, to scrole to top-->
+<button id="scrollToTopBtn">&#8593;</button>
 <footer class="footer">
     <div class="footer-container">
     <div class="footer-section">
