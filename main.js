@@ -377,3 +377,11 @@ function changeBackground() {
   }
 };
 toggleButton.onclick = changeBackground;
+
+function setCurrentYear() {
+  const currentYear = new Date().getFullYear();
+  document.getElementById('currentYear').textContent = currentYear;
+}
+
+document.addEventListener("DOMContentLoaded", setCurrentYear());
+
