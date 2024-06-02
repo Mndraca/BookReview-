@@ -348,3 +348,32 @@ document.getElementById("newBookForm").addEventListener("submit", (e) => {
   // Clear the form
   document.getElementById("newBookForm").reset();
 });
+
+// Toggle Button for Background Color Change 
+const toggleButton = document.querySelector("#check");
+const body = document.querySelector(".bookSection");
+const header = document.querySelector(".header");
+const footer = document.querySelector(".footer");
+const favoriteSection = document.querySelector(".fav");
+const search = document.querySelector(".searchButton");
+
+function changeBackground() {
+  const bodyColor = "linear-gradient(to bottom, #ff3333 0%, #993333 56%)";
+  const headerColor = "linear-gradient(to top, #ff3333 0%, #822626 15%)";
+  const footerColor = "#993333";
+  const searchColor = "#ffa7a7";
+  if (toggleButton.checked) {
+    body.style.background = bodyColor;
+    header.style.background = headerColor;
+    footer.style.backgroundColor = footerColor;
+    favoriteSection.style.background = bodyColor;
+    search.style.backgroundColor = searchColor;
+  } else {
+    body.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
+    header.style.background = "linear-gradient(to top, #33ccff 0%, #333399 15%)"; 
+    footer.style.backgroundColor = "#333399";
+    favoriteSection.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
+    search.style.backgroundColor = "#f6de74";
+  }
+};
+toggleButton.onclick = changeBackground;
