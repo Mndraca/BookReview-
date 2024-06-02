@@ -131,7 +131,7 @@ function booksDisplayed() {
       <li class="book-title" id="title-${book.id}" contenteditable="true">${book.title}</li>
       <li class="book-author" id="author-${book.id}" contenteditable="true">${book.author}</li>
       <li class="li-buttons">
-        <button id="fav-btn-${book.id}" onclick="toggleFavorite(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+        <button id="fav-btn-${book.id}" onclick="toggleFavorite(${book.id}, 'fav-btn-${book.id}')">Add to Favorites <i class="fa-regular fa-heart"></i></button>
         <button onclick="removeBook(${book.id})" class="remove-button"><i class="fa-regular fa-trash-can"></i></button>
       </li>
     `;
@@ -207,7 +207,7 @@ searchButton.addEventListener("click", (event) => {
       foundBooksText.innerHTML += `
         <h1 class="book-title">${book.title}</h1>
         <h2 class="book-author">${book.author}</h2>
-        <button id="fav-btn-${book.id}" onclick="toggleFavorite(${book.id})">Add to Favorites <i class="fa-regular fa-heart"></i></button>
+        <button id="search-fav-btn-${book.id}" onclick="toggleFavorite(${book.id}, 'search-fav-btn-${book.id}')">Add to Favorites <i class="fa-regular fa-heart"></i></button>
       `;
 
       bookResults.appendChild(foundBooksImage);
@@ -260,15 +260,15 @@ searchButton.addEventListener("click", (event) => {
 
 const favoriteBooksIds = new Set();
 
-function toggleFavorite(bookId) {
+function toggleFavorite(bookId, buttonId) {
   if (favoriteBooksIds.has(bookId)) {
-    removeFromFavorites(bookId);
+    removeFromFavorites(bookId, buttonId);
   } else {
-    addToFavorites(bookId);
+    addToFavorites(bookId, buttonId);
   }
 }
 
-function addToFavorites(bookId) {
+function addToFavorites(bookId, buttonId) {
   document.getElementById("favorites").classList.remove("hidden");
 
   const book = books.find((book) => book.id === bookId);
@@ -290,15 +290,10 @@ function addToFavorites(bookId) {
   favoriteBooksList.appendChild(clonedBooks);
 
   favoriteBooksIds.add(bookId);
-
-  const favButton = document.getElementById(`fav-btn-${bookId}`);
-  if (favButton) {
-    favButton.innerHTML = 'Added to Favorites <i class="fas fa-heart"></i>';
-    favButton.style.backgroundColor = 'grey';
-  }
+  updateFavoriteButton(buttonId, true);
 }
 
-function removeFromFavorites(bookId) {
+function removeFromFavorites(bookId, homeButtonId, searchButtonId) {
   favoriteBooksIds.delete(bookId);
 
   const favoriteBookElement = document.getElementById(`favoriteBook-${bookId}`);
@@ -306,14 +301,20 @@ function removeFromFavorites(bookId) {
     favoriteBookElement.remove();
   }
 
-  const favButton = document.getElementById(`fav-btn-${bookId}`);
-  if (favButton) {
-    favButton.innerHTML = 'Add to Favorites <i class="fa-regular fa-heart"></i>';
-    favButton.style.backgroundColor = '';
-  }
+  updateFavoriteButton(homeButtonId, false);
+  updateFavoriteButton(searchButtonId, false);
 
   if (favoriteBooksIds.size === 0) {
     document.getElementById("favorites").classList.add("hidden");
+  }
+}
+function updateFavoriteButton(buttonId, isFavorite) {
+  const favButton = document.getElementById(buttonId);
+  if (favButton) {
+    favButton.innerHTML = isFavorite
+      ? 'Added to Favorites <i class="fas fa-heart"></i>'
+      : 'Add to Favorites <i class="fa-regular fa-heart"></i>';
+    favButton.style.backgroundColor = isFavorite ? 'grey' : '';
   }
 }
 
