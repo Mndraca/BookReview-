@@ -119,9 +119,8 @@ let books = [
 
 
 function booksDisplayed() {
-  const bookContainer = document.getElementById("bookSection");
-  document.getElementById("favorites-h").classList.add("hidden"); 
-  document.getElementById("saved-h").classList.add("hidden"); 
+  const bookContainer = document.getElementById("bookSection"); 
+  bookContainer.classList.remove("hidden");  //Made books on first page visible, everything else is hidden with added classes "hidden" to other elements; 
   bookContainer.innerHTML = "";
   books.forEach((book) => {
     const bookList = document.createElement("ul");
@@ -172,8 +171,10 @@ const searchButton = document.getElementById("searchButton");
 
 searchButton.addEventListener("click", (event) => {
   event.preventDefault();
-  document.getElementById("bookSection").classList.add("hidden");
+  const bookContainer = document.getElementById("bookSection"); 
+  bookContainer.classList.add("hidden"); 
   const bookResults = document.getElementById("bookResults");
+  bookResults.classList.remove("hidden"); 
   const searchInput = document.getElementById("searchInput").value.toLowerCase().trim();
 
   let filteredBooks = books.filter((book) => {
@@ -217,7 +218,7 @@ searchButton.addEventListener("click", (event) => {
     saveButton.innerText = "Add Review";
     bookResults.appendChild(saveButton);
 
-    let addReview = document.getElementById("addReview");
+    let addReview = document.getElementById("addReview");  
     addReview.addEventListener("click", function () {
       let reviewField = document.getElementById("reviewField");
       let reviewContainer = document.createElement("div");
@@ -262,15 +263,18 @@ function toggleFavorite(bookId, buttonId) {
 }
 
 function addToFavorites(bookId, buttonId) {
-  document.getElementById("favorites-h").classList.remove("hidden");
-
+  
   const book = books.find((book) => book.id === bookId);
   if (!book || favoriteBooksIds.has(bookId)) return;
 
   const favoriteBooksList = document.getElementById("favorites");
+  favoriteBooksList.classList.remove("hidden");
+  const favHeader = document.getElementById("favorites-h");
+  favHeader.classList.remove("hidden");
   const clonedBooks = document.createElement("ul");
 
-  clonedBooks.className = "bookList";
+  clonedBooks.className = "bookList hidden";
+  clonedBooks.classList.remove("hidden");
   clonedBooks.setAttribute("id", `favoriteBook-${bookId}`); 
   clonedBooks.innerHTML = `
     <li><img src="${book.image}"></li>
@@ -315,20 +319,20 @@ function updateFavoriteButton(buttonId, isFavorite) {
 
 const favoritesLink = document.getElementById("favoritesLink");
 favoritesLink.addEventListener("click", () => {
-  document.getElementById("favorites-h").classList.remove("hidden");
+  document.getElementById("favorites").classList.remove("hidden"); //working 
   document.getElementById("bookSection").classList.add("hidden");
 });
 
 const homePage = document.getElementById("homePage");
 homePage.addEventListener("click", () => {
   document.getElementById("bookSection").classList.remove("hidden");
-  document.getElementById("bookResults").classList.add("hidden");
+  document.getElementById("bookResults").classList.add("hidden");  //working 
 });
 
-const savedReviewLink = document.getElementById("savedReviewLink");
+
+const savedReviewLink = document.getElementById("savedReviewLink");  //not working 
 savedReviewLink.addEventListener("click", () => {
   document.getElementById("saved-review").classList.remove("hidden");
-  document.getElementById("favorites").classList.add("hidden");
   document.getElementById("bookSection").classList.add("hidden");
   document.getElementById("bookResults").classList.add("hidden");
 });
@@ -442,3 +446,5 @@ document.addEventListener('DOMContentLoaded', () => {
     navMenu.classList.remove("active");
   }))
 });
+
+//test 

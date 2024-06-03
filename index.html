@@ -46,18 +46,18 @@
                 <span class="bar"></span>
             </div>
 </header>
-    <div class="bookSection" id="bookSection">
+    <div class="bookSection hidden" id="bookSection">
     </div>
-    <div id="bookResults"></div>
-    <div class="favorites-container">
-        <div class="fav">
-            <h1 id="favorites-h">Favorites :</h1>
+    <div class="hidden" id="bookResults"></div>
+    <div class="hidden" id="favorites-container">
+        <div id="fav" class="hidden">
+            <h1 class="hidden" id="favorites-h">Favorites :</h1>
         </div>
-        <div id="favorites"></div>
+        <div class="hidden" id="favorites"></div>
     </div>
 <!--add new div, class name saved-review-->
-<div class="saved-review bookSection fav" id="saved-review"> 
-    <h1 id="saved-h">Saved Review :</h1>
+<div class="saved-review bookSection fav hidden" id="saved-review"> 
+    <h1 id="review-h">Saved Review :</h1>
 </div>
 <!--add new button, to scrole to top-->
 <button id="scrollToTopBtn">&#8593;</button>
@@ -101,3 +101,5 @@
     <script src="main.js"></script>
 </body>
 </html>
+
+

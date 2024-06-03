@@ -254,16 +254,16 @@ li img {
   align-items: center;
   justify-content: center;
 }
-.fav {
+#fav {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.fav h1 {
+#fav h1 {
   color: var(--primary-text-color);
   font-family: cursive;
 }
-.favorites-container {
+#favorites-container {
   background: linear-gradient(to bottom, #33ccff 0%, #333399 46%);
   display: flex;
   flex-direction: column;
