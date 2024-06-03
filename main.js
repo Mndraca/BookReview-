@@ -358,24 +358,45 @@ const header = document.querySelector(".header");
 const footer = document.querySelector(".footer");
 const favoriteSection = document.querySelector(".fav");
 const search = document.querySelector(".searchButton");
+const saved = document.getElementById("saved-review");
+const bar = document.querySelector(".bar")
+const query = window.matchMedia("(max-width: 1501px)");
+console.log(query)
 
 function changeBackground() {
   const bodyColor = "linear-gradient(to bottom, #ff3333 0%, #993333 56%)";
   const headerColor = "linear-gradient(to top, #ff3333 0%, #822626 15%)";
   const footerColor = "#993333";
   const searchColor = "#ffa7a7";
+
   if (toggleButton.checked) {
     body.style.background = bodyColor;
     header.style.background = headerColor;
     footer.style.backgroundColor = footerColor;
     favoriteSection.style.background = bodyColor;
     search.style.backgroundColor = searchColor;
-  } else {
+    saved.style.background = bodyColor;
+    bar.style.backgroundColor = searchColor;
+    if (query.matches){
+    navMenu.style.background = "linear-gradient(to bottom, #822626 0%, #ff3333 56%";
+    } else {
+      navMenu.style.background = "none";
+    };
+  }
+   else {
     body.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
     header.style.background = "linear-gradient(to top, #33ccff 0%, #333399 15%)"; 
     footer.style.backgroundColor = "#333399";
     favoriteSection.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
     search.style.backgroundColor = "#f6de74";
+    saved.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
+    bar.style.backgroundColor = "#f6de74"
+    if (query.matches) {
+    navMenu.style.background = "linear-gradient(to bottom, #333399 0%, #33ccff 50%";
+    } else {
+      navMenu.style.background = "none";
+    };
+    
   }
 };
 toggleButton.onclick = changeBackground;
@@ -409,10 +430,15 @@ mybutton.addEventListener("click", function() {
 
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
-
+console.log(navMenu)
+const navLink = document.querySelectorAll(".nav-link")
 document.addEventListener('DOMContentLoaded', () => {
   hamburger.addEventListener('click', () => {
       hamburger.classList.toggle("active")
       navMenu.classList.toggle("active");
   });
+  navLink.forEach(n => n.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+  }))
 });
