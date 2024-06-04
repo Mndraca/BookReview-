@@ -117,10 +117,9 @@ let books = [
   },
 ];
 
-
 function booksDisplayed() {
-  const bookContainer = document.getElementById("bookSection"); 
-  bookContainer.classList.remove("hidden");  //Made books on first page visible, everything else is hidden with added classes "hidden" to other elements; 
+  const bookContainer = document.getElementById("bookSection");
+  bookContainer.classList.remove("hidden"); //Made books on first page visible, everything else is hidden with added classes "hidden" to other elements;
   bookContainer.innerHTML = "";
   books.forEach((book) => {
     const bookList = document.createElement("ul");
@@ -139,14 +138,14 @@ function booksDisplayed() {
 
     const bookTitleElement = document.getElementById(`title-${book.id}`);
     if (bookTitleElement) {
-      bookTitleElement.addEventListener('input', function (event) {
+      bookTitleElement.addEventListener("input", function (event) {
         const bookTitle = event.target.textContent;
         book.title = bookTitle;
       });
     }
     const bookAuthorElement = document.getElementById(`author-${book.id}`);
     if (bookAuthorElement) {
-      bookAuthorElement.addEventListener('input', function (event) {
+      bookAuthorElement.addEventListener("input", function (event) {
         const bookAuthor = event.target.textContent;
         book.author = bookAuthor;
       });
@@ -171,11 +170,14 @@ const searchButton = document.getElementById("searchButton");
 
 searchButton.addEventListener("click", (event) => {
   event.preventDefault();
-  const bookContainer = document.getElementById("bookSection"); 
-  bookContainer.classList.add("hidden"); 
+  const bookContainer = document.getElementById("bookSection");
+  bookContainer.classList.add("hidden");
   const bookResults = document.getElementById("bookResults");
-  bookResults.classList.remove("hidden"); 
-  const searchInput = document.getElementById("searchInput").value.toLowerCase().trim();
+  bookResults.classList.remove("hidden");
+  const searchInput = document
+    .getElementById("searchInput")
+    .value.toLowerCase()
+    .trim();
 
   let filteredBooks = books.filter((book) => {
     return (
@@ -185,7 +187,8 @@ searchButton.addEventListener("click", (event) => {
   });
 
   if (!searchInput) {
-    bookResults.textContent = "Please enter a book or author that you want to review.";
+    bookResults.textContent =
+      "Please enter a book or author that you want to review.";
     return;
   }
 
@@ -218,7 +221,7 @@ searchButton.addEventListener("click", (event) => {
     saveButton.innerText = "Add Review";
     bookResults.appendChild(saveButton);
 
-    let addReview = document.getElementById("addReview");  
+    let addReview = document.getElementById("addReview");
     addReview.addEventListener("click", function () {
       let reviewField = document.getElementById("reviewField");
       let reviewContainer = document.createElement("div");
@@ -263,7 +266,6 @@ function toggleFavorite(bookId, buttonId) {
 }
 
 function addToFavorites(bookId, buttonId) {
-  
   const book = books.find((book) => book.id === bookId);
   if (!book || favoriteBooksIds.has(bookId)) return;
 
@@ -275,7 +277,7 @@ function addToFavorites(bookId, buttonId) {
 
   clonedBooks.className = "bookList hidden";
   clonedBooks.classList.remove("hidden");
-  clonedBooks.setAttribute("id", `favoriteBook-${bookId}`); 
+  clonedBooks.setAttribute("id", `favoriteBook-${bookId}`);
   clonedBooks.innerHTML = `
     <li><img src="${book.image}"></li>
     <li class="book-title">${book.title}</li>
@@ -313,24 +315,23 @@ function updateFavoriteButton(buttonId, isFavorite) {
     favButton.innerHTML = isFavorite
       ? 'Added to Favorites <i class="fas fa-heart"></i>'
       : 'Add to Favorites <i class="fa-regular fa-heart"></i>';
-    favButton.style.backgroundColor = isFavorite ? 'grey' : '';
+    favButton.style.backgroundColor = isFavorite ? "#004891" : "";
   }
 }
 
 const favoritesLink = document.getElementById("favoritesLink");
 favoritesLink.addEventListener("click", () => {
-  document.getElementById("favorites").classList.remove("hidden"); //working 
+  document.getElementById("favorites").classList.remove("hidden"); //working
   document.getElementById("bookSection").classList.add("hidden");
 });
 
 const homePage = document.getElementById("homePage");
 homePage.addEventListener("click", () => {
   document.getElementById("bookSection").classList.remove("hidden");
-  document.getElementById("bookResults").classList.add("hidden");  //working 
+  document.getElementById("bookResults").classList.add("hidden"); //working
 });
 
-
-const savedReviewLink = document.getElementById("savedReviewLink");  //not working 
+const savedReviewLink = document.getElementById("savedReviewLink"); //not working
 savedReviewLink.addEventListener("click", () => {
   document.getElementById("saved-review").classList.remove("hidden");
   document.getElementById("bookSection").classList.add("hidden");
@@ -363,7 +364,7 @@ const footer = document.querySelector(".footer");
 const fav = document.getElementById("favorites-container");
 const search = document.querySelector(".searchButton");
 const saved = document.getElementById("saved-review");
-const bar = document.querySelector(".bar")
+const bar = document.querySelector(".bar");
 const query = window.matchMedia("(min-width: 1501px)");
 const bookResults = document.getElementById("bookResults");
 
@@ -382,23 +383,26 @@ function changeBackground() {
     saved.style.background = bodyColor;
     bar.style.backgroundColor = searchColor;
     bookResults.style.background = bodyColor;
-    navMenu.style.background = "linear-gradient(to bottom, rgb(130, 38, 38) 0%, #ff3333 50%"
-    
-    } 
-  
-   else {
-    body.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
-    header.style.background = "linear-gradient(to top, #33ccff 0%, #333399 15%)"; 
+    navMenu.style.background =
+      "linear-gradient(to bottom, rgb(130, 38, 38) 0%, #ff3333 50%";
+  } else {
+    body.style.background =
+      "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
+    header.style.background =
+      "linear-gradient(to top, #33ccff 0%, #333399 15%)";
     footer.style.backgroundColor = "#333399";
-    fav.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
+    fav.style.background =
+      "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
     search.style.backgroundColor = "#f6de74";
-    saved.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
-    bar.style.backgroundColor = "#f6de74"
-    bookResults.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
-    navMenu.style.background = "linear-gradient(to bottom, #333399 0%, #33ccff 50%"
-    }
-  
-};
+    saved.style.background =
+      "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
+    bar.style.backgroundColor = "#f6de74";
+    bookResults.style.background =
+      "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
+    navMenu.style.background =
+      "linear-gradient(to bottom, #333399 0%, #33ccff 50%";
+  }
+}
 toggleButton.onclick = changeBackground;
 
 function setCurrentYear() {
@@ -411,7 +415,9 @@ document.addEventListener("DOMContentLoaded", setCurrentYear());
 // add button to scrole to top
 let mybutton = document.getElementById("scrollToTopBtn");
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () {
+  scrollFunction();
+};
 
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -420,26 +426,27 @@ function scrollFunction() {
     mybutton.style.display = "none";
   }
 }
-mybutton.addEventListener("click", function() {
+mybutton.addEventListener("click", function () {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 });
 
-
-// hamburger menu 
+// hamburger menu
 
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
-console.log(navMenu)
-const navLink = document.querySelectorAll(".nav-link")
-document.addEventListener('DOMContentLoaded', () => {
+console.log(navMenu);
+const navLink = document.querySelectorAll(".nav-link");
+document.addEventListener("DOMContentLoaded", () => {
   hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active")
-      navMenu.classList.toggle("active");
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
   });
-  navLink.forEach(n => n.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-  }))
+  navLink.forEach((n) =>
+    n.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+    })
+  );
 });
-//test 
+//test

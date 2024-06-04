@@ -1,5 +1,5 @@
 :root {
-  --primary-bg-color: linear-gradient(to bottom, #33ccff 0%, #333399 56%);;
+  --primary-bg-color: linear-gradient(to bottom, #33ccff 0%, #333399 56%);
   --mobile-view-bg-color: #002244;
   --primary-text-color: #fff;
   --secondary-bg-color: #f4f4f4;
@@ -21,7 +21,11 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--secondary-bg-color);
+  background: linear-gradient(
+    to top,
+    rgb(51, 204, 255) 0%,
+    rgb(51, 51, 153) 15%
+  );
 }
 
 header {
@@ -72,14 +76,16 @@ nav ul li a:hover {
   width: 80px;
   height: 50px;
   border-radius: 200px;
-  box-shadow: inset 0px 5px 15px rgba(0,0,0,0.4), inset 0px -5px 15px rgba(255,255,255,0.4);
+  box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0px -5px 15px rgba(255, 255, 255, 0.4);
   cursor: pointer;
   scale: 0.8;
   margin-left: 8px;
 }
+
 .button::before {
   position: absolute;
-  content: '';
+  content: "";
   background-color: #000;
   width: 40px;
   height: 40px;
@@ -94,6 +100,10 @@ input:checked + .button::before {
   transform: translateX(27px);
   background-color: #fff;
 }
+input:checked + body {
+  background: linear-gradient(rgb(255, 51, 51) 0%, rgb(153, 51, 51) 56%);
+}
+
 #check {
   display: none;
 }
@@ -139,7 +149,9 @@ li i {
   font-style: normal;
   color: var(--primary-text-color);
 }
-
+#review-h {
+  color: var(--primary-text-color);
+}
 h2 {
   font-size: 18px;
   font-weight: 300;
@@ -216,22 +228,29 @@ li img {
   list-style-type: none;
   padding: 2%;
 }
-.booklist, img {
-  transition: 0.5s ease
+
+img {
+  transition: 1s ease-out;
 }
-.booklist, img:hover,
-.booklist, img:active,
-.booklist, img:focus {
+.booklist,
+img:hover,
+.booklist,
+img:active,
+.booklist,
+img:focus {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0, 5);
   -webkit-transform: scale(1.1);
-  transform: scale(1.2); 
+  transform: scale(1.1);
 }
-.booklist, button:hover,
-.booklist, button:active,
-.booklist, button:focus {
+.booklist,
+button:hover,
+.booklist,
+button:active,
+.booklist,
+button:focus {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0, 5);
   -webkit-transform: scale(1.1);
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 .book-author {
   font-size: 1em;
@@ -290,7 +309,7 @@ footer {
 
 .footer-section {
   flex: 1;
-  margin: 8px ;
+  margin: 8px;
   max-width: 400px;
   text-align: center;
 }
@@ -343,16 +362,6 @@ footer {
 .footer-bottom p {
   margin: 0;
 }
-.bookList button {
-  background-color: var(--mobile-view-bg-color);
-  color: white;
-  border: 2px solid #333399;
-  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.5);
-  border-radius: 9px;
-  padding: 10px 10px;
-  margin-top: 15px;
-  transition: 0.5s ease;
-}
 
 .foundBooksText button {
   background-color: var(--mobile-view-bg-color);
@@ -362,6 +371,15 @@ footer {
   font-size: 0.8em;
   padding: 10px 10px;
   margin-bottom: 3%;
+  transition: all 1s ease-in-out 0s;
+  transform: scale(1.1);
+}
+#addReview {
+  transition: all 1s ease-in-out 0s;
+  transform: scale(1.1);
+}
+#addReview:hover {
+  background-color: #004891;
 }
 p {
   color: var(--primary-text-color);
@@ -395,7 +413,6 @@ input[type="text"]:focus {
 .deleteSection {
   padding: 0 0 2% 2%;
 }
-
 
 @media only screen and (max-width: 1100px) {
   .search-bar input[type="text"] {
@@ -449,57 +466,57 @@ input[type="text"]:focus {
   }
 }
 @media only screen and (max-width: 480px) {
-    .search-bar input[type="text"] {
-      width: 120px;
-      height: 30px;
-      margin-top: 10px;
-      margin-right: 0;
-    }
-    .search-bar button {
-      scale: 0.7;
-    }
-    .button {
-      scale: 0.6;
-      margin-left: 0;
-    }
-    .title {
-      font-size: 20px;
-    }
+  .search-bar input[type="text"] {
+    width: 120px;
+    height: 30px;
+    margin-top: 10px;
+    margin-right: 0;
   }
-  @media only screen and (max-width: 438px) {
-    .search-bar input[type="text"] {
-      width: 100px;
-      height: 30px;
-      margin-bottom: 7px;
-      margin-right: 0;
-    }
-    .search-bar button {
-      scale: 0.6;
-    }
-    .button {
-      scale: 0.5;
-      margin-left: -10px;
-    }
-    .title {
-      font-size: 20px;
-    }
-} 
-  @media only screen and (max-width: 425px) {
-      .search-bar input[type="text"] {
-        width: 100px;
-        height: 30px;
-        margin-bottom: 7px;
-        margin-right: 0;
-      }
-      .search-bar button {
-        scale: 0.5;
-      }
-      .button {
-        display: none;
-      }
-      .title {
-        font-size: 20px;
-      }
+  .search-bar button {
+    scale: 0.7;
+  }
+  .button {
+    scale: 0.6;
+    margin-left: 0;
+  }
+  .title {
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width: 438px) {
+  .search-bar input[type="text"] {
+    width: 100px;
+    height: 30px;
+    margin-bottom: 7px;
+    margin-right: 0;
+  }
+  .search-bar button {
+    scale: 0.6;
+  }
+  .button {
+    scale: 0.5;
+    margin-left: -10px;
+  }
+  .title {
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .search-bar input[type="text"] {
+    width: 100px;
+    height: 30px;
+    margin-bottom: 7px;
+    margin-right: 0;
+  }
+  .search-bar button {
+    scale: 0.5;
+  }
+  .button {
+    display: none;
+  }
+  .title {
+    font-size: 20px;
+  }
 }
 nav ul {
   align-items: center;
@@ -511,6 +528,7 @@ nav ul {
   flex-direction: row;
   align-items: center;
   background: linear-gradient(to bottom, #33ccff 19%, #333399 89%);
+  color: var(--primary-text-color);
 }
 
 img {
@@ -536,7 +554,7 @@ img {
   font-size: 0.8em;
   padding: 10px 10px;
   margin-top: 10px;
-  transition: 0.5s ease;
+  transition: 1s ease-in-out;
 }
 .book-author {
   color: var(--primary-text-color);
@@ -567,6 +585,10 @@ img {
   }
   .bookList button {
     font-size: 0.5em;
+    padding: 8px 8px;
+  }
+  button:hover {
+    transform: scale(0.9);
   }
   #footer-section-two,
   #footer-section-three {
@@ -600,6 +622,9 @@ img {
   }
   .footer-section h3 {
     margin-top: 0;
+  }
+  .search-bar input[type="text"] {
+    font-size: 0.5em;
   }
 }
 #addBookForm {
@@ -644,23 +669,23 @@ img {
 }
 
 #scrollToTopBtn {
-  display: none; 
-  position: fixed; 
-  bottom: 20px; 
-  right: 30px; 
-  z-index: 99; 
-  border: none; 
-  outline: none; 
-  background-color: #555; 
-  color: white; 
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #555;
+  color: white;
   cursor: pointer;
-  padding: 15px; 
-  border-radius: 10px; 
-  font-size: 18px; 
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 18px;
 }
 
 #scrollToTopBtn:hover {
-  background-color: #333; 
+  background-color: #333;
 }
 .hamburger {
   display: none;
@@ -691,19 +716,19 @@ img {
     transform: translateY(-8px) rotate(-45deg);
   }
   .nav-menu {
-   position: fixed;
-   right: -100%;
-   top: 105px;
-   gap: 0;
-   font-size: 1.8rem;
-   padding-top: 100px;
-   flex-direction: column;
-   background: linear-gradient(to bottom, #333399 0%, #33ccff 100%);
-   width: 100%;
-   height: -webkit-fill-available;
-   text-align: center;
-   transition: 0.3s;
-   z-index: 98;
+    position: fixed;
+    right: -100%;
+    top: 105px;
+    gap: 0;
+    font-size: 1.8rem;
+    padding-top: 100px;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #333399 0%, #33ccff 100%);
+    width: 100%;
+    height: -webkit-fill-available;
+    text-align: center;
+    transition: 0.3s;
+    z-index: 98;
   }
   nav ul {
     display: block;
@@ -712,14 +737,13 @@ img {
   nav ul li a {
     font-size: 1.3em;
   }
-  .nav-item{
+  .nav-item {
     margin: 80px 0;
     color: #000;
   }
 
   .nav-menu.active {
     right: 0;
-
   }
 }
 
@@ -733,17 +757,17 @@ img {
     font-size: 1.1em;
   }
 }
-@media only screen and (max-width:688px) {
+@media only screen and (max-width: 688px) {
   nav ul li a {
     font-size: 0.9em;
   }
 }
-@media only screen and (max-width:688px) {
+@media only screen and (max-width: 688px) {
   nav ul li a {
     font-size: 0.8em;
   }
 }
-@media only screen and (max-width:486px) {
+@media only screen and (max-width: 486px) {
   nav ul li a {
     font-size: 0.7em;
   }
@@ -751,15 +775,11 @@ img {
     scale: 1.1;
   }
 }
-@media only screen and (max-width:430px) {
+@media only screen and (max-width: 430px) {
   nav ul li a {
     font-size: 0.7em;
   }
   .hamburger {
     scale: 0.9;
   }
-}
-
-#bookResults {
-  height: 100%;
 }
