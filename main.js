@@ -360,12 +360,12 @@ const toggleButton = document.querySelector("#check");
 const body = document.querySelector(".bookSection");
 const header = document.querySelector(".header");
 const footer = document.querySelector(".footer");
-const favoriteSection = document.querySelector(".fav");
+const fav = document.getElementById("favorites-container");
 const search = document.querySelector(".searchButton");
 const saved = document.getElementById("saved-review");
 const bar = document.querySelector(".bar")
-const query = window.matchMedia("(max-width: 1501px)");
-console.log(query)
+const query = window.matchMedia("(min-width: 1501px)");
+const bookResults = document.getElementById("bookResults");
 
 function changeBackground() {
   const bodyColor = "linear-gradient(to bottom, #ff3333 0%, #993333 56%)";
@@ -377,31 +377,27 @@ function changeBackground() {
     body.style.background = bodyColor;
     header.style.background = headerColor;
     footer.style.backgroundColor = footerColor;
-    favoriteSection.style.background = bodyColor;
+    fav.style.background = bodyColor;
     search.style.backgroundColor = searchColor;
     saved.style.background = bodyColor;
     bar.style.backgroundColor = searchColor;
-    if (query.matches){
-    navMenu.style.background = "linear-gradient(to bottom, #822626 0%, #ff3333 56%";
-    } else {
-      navMenu.style.background = "none";
-    };
-  }
+    bookResults.style.background = bodyColor;
+    navMenu.style.background = "linear-gradient(to bottom, rgb(130, 38, 38) 0%, #ff3333 50%"
+    
+    } 
+  
    else {
     body.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
     header.style.background = "linear-gradient(to top, #33ccff 0%, #333399 15%)"; 
     footer.style.backgroundColor = "#333399";
-    favoriteSection.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
+    fav.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
     search.style.backgroundColor = "#f6de74";
     saved.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
     bar.style.backgroundColor = "#f6de74"
-    if (query.matches) {
-    navMenu.style.background = "linear-gradient(to bottom, #333399 0%, #33ccff 50%";
-    } else {
-      navMenu.style.background = "none";
-    };
-    
-  }
+    bookResults.style.background = "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
+    navMenu.style.background = "linear-gradient(to bottom, #333399 0%, #33ccff 50%"
+    }
+  
 };
 toggleButton.onclick = changeBackground;
 
@@ -437,7 +433,7 @@ const navMenu = document.querySelector(".nav-menu");
 console.log(navMenu)
 const navLink = document.querySelectorAll(".nav-link")
 document.addEventListener('DOMContentLoaded', () => {
-  hamburger.addEventListener('click', () => {
+  hamburger.addEventListener("click", () => {
       hamburger.classList.toggle("active")
       navMenu.classList.toggle("active");
   });
@@ -446,5 +442,4 @@ document.addEventListener('DOMContentLoaded', () => {
     navMenu.classList.remove("active");
   }))
 });
-
 //test 
