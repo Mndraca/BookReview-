@@ -303,7 +303,7 @@ function removeFromFavorites(bookId, homeButtonId, searchButtonId) {
   updateFavoriteButton(searchButtonId, false);
 
   if (favoriteBooksIds.size === 0) {
-    document.getElementById("favorites-h").classList.add("hidden");
+    document.getElementById("favorites-h").innerText = "Your favorites list is empty."
   }
 }
 
@@ -321,6 +321,7 @@ const favoritesLink = document.getElementById("favoritesLink");
 favoritesLink.addEventListener("click", () => {
   document.getElementById("favorites").classList.remove("hidden"); //working 
   document.getElementById("bookSection").classList.add("hidden");
+  document.getElementById("bookResults").classList.add("hidden");
 });
 
 const homePage = document.getElementById("homePage");
@@ -332,8 +333,10 @@ homePage.addEventListener("click", () => {
 
 const savedReviewLink = document.getElementById("savedReviewLink");  //not working 
 savedReviewLink.addEventListener("click", () => {
-  document.getElementById("saved-review").classList.remove("hidden");
   document.getElementById("bookSection").classList.add("hidden");
+  document.getElementById("favorites").classList.add("hidden");
+  document.getElementById("review-h").classList.remove("hidden");
+  document.getElementById("saved-review").classList.remove("hidden");
   document.getElementById("bookResults").classList.add("hidden");
 });
 

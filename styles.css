@@ -259,7 +259,7 @@ li img {
   flex-direction: row;
   justify-content: center;
 }
-#fav h1 {
+.favorites-h {
   color: var(--primary-text-color);
   font-family: cursive;
 }
