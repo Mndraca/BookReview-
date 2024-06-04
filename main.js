@@ -255,6 +255,68 @@ searchButton.addEventListener("click", (event) => {
   }
 });
 
+//======================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const reviewForm = document.getElementById('reviewForm');
+  const bookSelect = document.getElementById("bookSelect")
+  const reviewText = document.getElementById('reviewText');
+  const savedReviewsList = document.getElementById('savedReviewsList');
+
+
+
+  let reviews = [];
+
+  books.forEach((book) => {
+      const option = document.createElement('option');
+      option.value = book.title;
+      option.textContent = book.title;
+      bookSelect.appendChild(option);
+  });
+
+
+
+
+  reviewForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const review = {
+          title: bookSelect.value,
+          text: reviewText.value,
+           
+      };
+
+      reviews.push(review);
+      displayReviews();
+
+      reviewForm.reset();
+  });
+
+  function displayReviews() {
+      savedReviewsList.innerHTML = '';
+
+      reviews.forEach((review, index) => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+              <strong>${review.title}</strong>
+              <p>${review.text}</p>
+              <button class="delete-button" data-index="${index}">Delete</button>
+          `;
+          savedReviewsList.appendChild(li);
+
+          const deleteButton = li.querySelector('.delete-button');
+          deleteButton.addEventListener('click', () => {
+              reviews.splice(index, 1);
+              displayReviews();
+          });
+      });
+  }
+});
+
+
+//========================================================
+
 const favoriteBooksIds = new Set();
 
 function toggleFavorite(bookId, buttonId) {

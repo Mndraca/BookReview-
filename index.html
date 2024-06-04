@@ -56,8 +56,25 @@
         <div class="hidden" id="favorites"></div>
     </div>
 <!--add new div, class name saved-review-->
+<h1 id="fav" class="hidden" id="favorites-h">Saved Review :</h1>
 <div class="saved-review bookSection fav hidden" id="saved-review"> 
-    <h1 id="review-h">Saved Review :</h1>
+    <section class="review-section">
+        <h2 class="addreviewcolor">Add Review</h2>
+        <form id="reviewForm">
+            <label for="bookSelect">Book Title:</label>
+            <select id="bookSelect" required>
+                <option value="" disabled selected>Select a book</option>
+            </select>
+
+            <label for="reviewText">Review:</label>
+            <textarea id="reviewText" required></textarea>
+
+            <button type="submit">Save Review</button>
+        </form>
+    </section>
+    <section class="saved-reviews-section">
+        <ul id="savedReviewsList"></ul>
+    </section>
 </div>
 <!--add new button, to scroll to top-->
 <button id="scrollToTopBtn">&#8593;</button>
