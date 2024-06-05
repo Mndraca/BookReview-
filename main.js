@@ -477,8 +477,6 @@ function changeBackground() {
     saved.style.background = bodyColor;
     bar.style.backgroundColor = searchColor;
     bookResults.style.background = bodyColor;
-    navMenu.style.background =
-      "linear-gradient(to bottom, rgb(130, 38, 38) 0%, #ff3333 50%";
   } else {
     body.style.background =
       "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
@@ -493,8 +491,6 @@ function changeBackground() {
     bar.style.backgroundColor = "#f6de74";
     bookResults.style.background =
       "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
-    navMenu.style.background =
-      "linear-gradient(to bottom, #333399 0%, #33ccff 50%";
   }
 }
 toggleButton.onclick = changeBackground;
@@ -526,10 +522,6 @@ mybutton.addEventListener("click", function () {
 });
 
 // hamburger menu
-
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-menu");
-console.log(navMenu);
 const navLink = document.querySelectorAll(".nav-link");
 document.addEventListener("DOMContentLoaded", () => {
   hamburger.addEventListener("click", () => {
