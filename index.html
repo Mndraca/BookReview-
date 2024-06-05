@@ -19,7 +19,7 @@
 </head>
 <body>
     <header class="header">
-        <div class="header-container">
+        <div id="header-container" class="header-container">
             <h1 class="title">Book Club</h1>
         <form>
                 <div class="search-bar">
@@ -34,10 +34,10 @@
         </form>
             <nav class="nav-menu">
                 <ul>
-                    <li class="nav-item"><a id="homePage" href="#bookSection" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a id="savedReviewLink" href="#saved-review" class="nav-link">Saved Review</a></li>
-                    <li class="nav-item"><a id="favoritesLink" href="#favorites" class="nav-link">Favorites</a></li>
-                    <li class="nav-item"><a href="#footer-section-three" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item"><a id="homePage" href="#header-container" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a id="savedReviewLink" href="#header-container" class="nav-link">Saved Review</a></li>
+                    <li class="nav-item"><a id="favoritesLink" href="#header-container" class="nav-link">Favorites</a></li>
+                    <li class="nav-item"><a id="contacts" href="#footer-section-three" class="nav-link">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="hamburger">
@@ -56,9 +56,8 @@
         <div class="hidden" id="favorites"></div>
     </div>
 <!--add new div, class name saved-review-->
-<h1 id="fav" class="hidden" id="favorites-h">Saved Review :</h1>
 <div class="saved-review bookSection fav hidden" id="saved-review"> 
-    <section class="review-section">
+    <section id="review-section" class="review-section">
         <h2 class="addreviewcolor">Add Review</h2>
         <form id="reviewForm">
             <label for="bookSelect">Book Title:</label>

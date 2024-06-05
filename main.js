@@ -383,14 +383,21 @@ function updateFavoriteButton(buttonId, isFavorite) {
 
 const favoritesLink = document.getElementById("favoritesLink");
 favoritesLink.addEventListener("click", () => {
-  document.getElementById("favorites").classList.remove("hidden"); //working
+  document.getElementById("saved-review").classList.add("hidden");
+  document.getElementById("favorites").classList.remove("hidden"); 
   document.getElementById("bookSection").classList.add("hidden");
+});
+
+const contantsLink = document.getElementById("contacts");
+contantsLink.addEventListener("click", () => {
+  document.getElementById("saved-review").classList.add("hidden");
 });
 
 const homePage = document.getElementById("homePage");
 homePage.addEventListener("click", () => {
+  document.getElementById("saved-review").classList.add("hidden"); 
   document.getElementById("bookSection").classList.remove("hidden");
-  document.getElementById("bookResults").classList.add("hidden"); //working
+  document.getElementById("bookResults").classList.add("hidden"); 
 });
 
 const savedReviewLink = document.getElementById("savedReviewLink"); //not working
