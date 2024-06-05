@@ -784,3 +784,13 @@ img {
     scale: 0.9;
   }
 }
+
+section.review-section {
+
+  max-width: 350px;
+
+}
+
+h2.addreviewcolor {
+  color: blue;
+}
