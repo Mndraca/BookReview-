@@ -159,10 +159,13 @@ h2 {
 
 button {
   padding: 10px 20px;
-  background-color: thistle;
+  background-color: var(--mobile-view-bg-color);
   color: var(--primary-text-color);
-  border-radius: 8px;
   cursor: pointer;
+  border: 2px solid #333399;
+  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 9px;
+  transition: 1s ease-in-out;
 }
 
 input[type="text"] {
@@ -196,15 +199,84 @@ li img {
   border-radius: 8px;
   box-shadow: var(--box-shadow);
 }
-
+/*This*/
 .review-section {
-  max-width: 155px;
+  max-width: 50%;
   padding: 3%;
-  background-color: var(--primary-text-color);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   border-radius: 8px;
   box-shadow: var(--box-shadow);
 }
+.saved-reviews-section {
+  display: flex;
+  flex-direction: column;
+}
+#saved-review {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
 
+h2.addreviewcolor {
+  color: var(--primary-text-color);
+  font-family: "Goudy Bookletter 1911", serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 22px;
+}
+
+#reviewForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#reviewText {
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  padding-top: 5%;
+}
+#reviewForm button {
+  margin-top: 5%;
+}
+#savedReviewsList li {
+  list-style: none;
+  padding: 3%;
+}
+#savedReviewsList p {
+  background-color: var(--primary-text-color);
+  color: var(--mobile-view-bg-color);
+  padding: 5%;
+  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+#savedReviewsList strong {
+  font-family: "Goudy Bookletter 1911", serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 22px;
+}
+#savedReviewsList {
+  display: flex;
+}
+#reviewForm label {
+  padding: 3%;
+  font-family: "Goudy Bookletter 1911", serif;
+  font-style: normal;
+  font-weight: 900;
+}
+#bookSelect {
+  width: 80%;
+  padding: 3%;
+  color: var(--mobile-view-bg-color);
+  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+/*This*/
 .bookSection {
   display: flex;
   flex-wrap: wrap;
@@ -482,6 +554,19 @@ input[type="text"]:focus {
   }
   .title {
     font-size: 20px;
+  }
+  h2.addreviewcolor {
+    font-size: 19px;
+  }
+  #reviewForm label {
+    font-size: 16px;
+  }
+  #reviewText {
+    width: 90%;
+    height: 35px;
+  }
+  #savedReviewsList strong {
+    font-size: 19px;
   }
 }
 @media only screen and (max-width: 438px) {
@@ -783,14 +868,4 @@ img {
   .hamburger {
     scale: 0.9;
   }
-}
-
-section.review-section {
-
-  max-width: 350px;
-
-}
-
-h2.addreviewcolor {
-  color: blue;
 }
