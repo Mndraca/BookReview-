@@ -106,7 +106,7 @@ let books = [
   {
     id: 20,
     image: "images/img20.webp",
-    title: "An Offer from a Gentleman",
+    title: "An Offer",
     author: "Julia Quinn",
   },
   {
@@ -384,8 +384,10 @@ function updateFavoriteButton(buttonId, isFavorite) {
 const favoritesLink = document.getElementById("favoritesLink");
 favoritesLink.addEventListener("click", () => {
   document.getElementById("saved-review").classList.add("hidden");
+  document.getElementById("fav").classList.remove("hidden");
   document.getElementById("favorites").classList.remove("hidden"); 
   document.getElementById("bookSection").classList.add("hidden");
+  document.getElementById("bookResults").classList.add("hidden");
 });
 
 const contantsLink = document.getElementById("contacts");
@@ -403,8 +405,10 @@ homePage.addEventListener("click", () => {
 const savedReviewLink = document.getElementById("savedReviewLink"); //not working
 savedReviewLink.addEventListener("click", () => {
   document.getElementById("saved-review").classList.remove("hidden");
+  document.getElementById("favorites-h").classList.add("hidden");
   document.getElementById("bookSection").classList.add("hidden");
   document.getElementById("bookResults").classList.add("hidden");
+  document.querySelector(`#${clonedBooks}`).classList.add("hidden");  // PROBLEMMMMM 
 });
 
 document.getElementById("newBookForm").addEventListener("submit", (e) => {
