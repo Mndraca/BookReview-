@@ -440,6 +440,27 @@ const saved = document.getElementById("saved-review");
 const bar = document.querySelector(".bar");
 const query = window.matchMedia("(min-width: 1501px)");
 const bookResults = document.getElementById("bookResults");
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+
+$(window).resize(function() {
+  if (toggleButton && navMenu) {
+    if ($(window).width() <= 1501) {
+      if (toggleButton.checked) {
+        navMenu.style.background = "linear-gradient(to bottom, rgb(130, 38, 38) 0%, #ff3333 50%)";
+      }
+      else {
+        navMenu.style.background = "linear-gradient(to bottom, #333399 0%, #33ccff 50%)";
+      };
+    } else {
+      navMenu.style.background = "none"
+    };
+  };
+});
+
+document.querySelector("#check").addEventListener("change", function() {
+  $(window).resize();
+});
 
 function changeBackground() {
   const bodyColor = "linear-gradient(to bottom, #ff3333 0%, #993333 56%)";
