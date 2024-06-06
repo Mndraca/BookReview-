@@ -258,61 +258,65 @@ searchButton.addEventListener("click", (event) => {
 //======================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-
   const reviewForm = document.getElementById('reviewForm');
-  const bookSelect = document.getElementById("bookSelect")
+  const bookSelect = document.getElementById("bookSelect");
   const reviewText = document.getElementById('reviewText');
   const savedReviewsList = document.getElementById('savedReviewsList');
-
-
 
   let reviews = [];
 
   books.forEach((book) => {
-      const option = document.createElement('option');
-      option.value = book.title;
-      option.textContent = book.title;
-      bookSelect.appendChild(option);
+    const option = document.createElement('option');
+    option.value = book.title;
+    option.textContent = book.title;
+    bookSelect.appendChild(option);
   });
 
-
-
-
   reviewForm.addEventListener('submit', (event) => {
-      event.preventDefault();
+    event.preventDefault();
 
+    const selectedBook = books.find(book => book.title === bookSelect.value);
+    const existingReviewIndex = reviews.findIndex(review => review.title === selectedBook.title);
+
+    if (existingReviewIndex > -1) {
+      reviews[existingReviewIndex].text = reviewText.value;
+      alert("You already added a review for this book.")
+    } else {
       const review = {
-          title: bookSelect.value,
-          text: reviewText.value,
-           
+        title: selectedBook.title,
+        text: reviewText.value,
+        image: selectedBook.image,
       };
-
+    
       reviews.push(review);
       displayReviews();
 
       reviewForm.reset();
+    }
   });
 
   function displayReviews() {
-      savedReviewsList.innerHTML = '';
+    savedReviewsList.innerHTML = '';
 
-      reviews.forEach((review, index) => {
-          const li = document.createElement('li');
-          li.innerHTML = `
-              <strong>${review.title}</strong>
-              <p>${review.text}</p>
-              <button class="delete-button" data-index="${index}">Delete</button>
-          `;
-          savedReviewsList.appendChild(li);
+    reviews.forEach((review, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <img src="${review.image}" alt="${review.title}" style="width: 100px; height: auto;">
+        <strong>${review.title}</strong>
+        <p>${review.text}</p>
+        <button class="delete-button" data-index="${index}">Delete</button>
+      `;
+      savedReviewsList.appendChild(li);
 
-          const deleteButton = li.querySelector('.delete-button');
-          deleteButton.addEventListener('click', () => {
-              reviews.splice(index, 1);
-              displayReviews();
-          });
+      const deleteButton = li.querySelector('.delete-button');
+      deleteButton.addEventListener('click', () => {
+        reviews.splice(index, 1);
+        displayReviews();
       });
+    });
   }
 });
+
 
 
 //========================================================
