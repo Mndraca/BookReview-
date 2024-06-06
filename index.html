@@ -47,7 +47,7 @@
                 <span class="bar"></span>
             </div>
 </header>
-    <div class="bookSection hidden" id="bookSection">
+    <div class="book-section hidden" id="bookSection"> <!--class name changed to book-section-->
     </div>
     <div class="hidden" id="bookResults"></div>
     <div class="hidden" id="favorites-container">
@@ -57,8 +57,8 @@
         <div class="hidden" id="favorites"></div>
     </div>
 <!--add new div, class name saved-review-->
-<div class="saved-review bookSection fav hidden" id="saved-review"> 
-    <section id="review-section" class="review-section">
+<div class="saved-review hidden" id="savedReview"> <!--id changed to savedReview-->
+    <section id="reviewSection" class="review-section"><!--id changed to reviewSection-->
         <h2 class="addreviewcolor">Add Review</h2>
         <form id="reviewForm">
             <label for="bookSelect">Book Title:</label>
@@ -69,7 +69,7 @@
             <label for="reviewText">Review:</label>
             <textarea id="reviewText" required></textarea>
 
-            <button type="submit">Save Review</button>
+            <button id="F" type="submit">Save Review</button>
         </form>
     </section>
     <section class="saved-reviews-section">
