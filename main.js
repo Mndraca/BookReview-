@@ -179,7 +179,6 @@ searchButton.addEventListener("click", (event) => {
   const elementToHide = document.getElementById("savedReview");
   elementToHide.style.display = "none";
 
-
   const searchInput = document
     .getElementById("searchInput")
     .value.toLowerCase()
@@ -263,37 +262,39 @@ searchButton.addEventListener("click", (event) => {
 
 //======================================================
 
-document.addEventListener('DOMContentLoaded', () => {
-  const reviewForm = document.getElementById('reviewForm');
+document.addEventListener("DOMContentLoaded", () => {
+  const reviewForm = document.getElementById("reviewForm");
   const bookSelect = document.getElementById("bookSelect");
-  const reviewText = document.getElementById('reviewText');
-  const savedReviewsList = document.getElementById('savedReviewsList');
+  const reviewText = document.getElementById("reviewText");
+  const savedReviewsList = document.getElementById("savedReviewsList");
 
   let reviews = [];
 
   books.forEach((book) => {
-    const option = document.createElement('option');
+    const option = document.createElement("option");
     option.value = book.title;
     option.textContent = book.title;
     bookSelect.appendChild(option);
   });
 
-  reviewForm.addEventListener('submit', (event) => {
+  reviewForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const selectedBook = books.find(book => book.title === bookSelect.value);
-    const existingReviewIndex = reviews.findIndex(review => review.title === selectedBook.title);
+    const selectedBook = books.find((book) => book.title === bookSelect.value);
+    const existingReviewIndex = reviews.findIndex(
+      (review) => review.title === selectedBook.title
+    );
 
     if (existingReviewIndex > -1) {
       reviews[existingReviewIndex].text = reviewText.value;
-      alert("You already added a review for this book.")
+      alert("You already added a review for this book.");
     } else {
       const review = {
         title: selectedBook.title,
         text: reviewText.value,
         image: selectedBook.image,
       };
-    
+
       reviews.push(review);
       displayReviews();
 
@@ -302,28 +303,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function displayReviews() {
-    savedReviewsList.innerHTML = '';
+    savedReviewsList.innerHTML = "";
 
     reviews.forEach((review, index) => {
-      const li = document.createElement('li');
+      const li = document.createElement("li");
       li.innerHTML = `
-        <img src="${review.image}" alt="${review.title}" style="width: 100px; height: auto;">
+        <img src="${review.image}" alt="${review.title}" style="width: 130px; height: auto;">
         <strong>${review.title}</strong>
         <p>${review.text}</p>
         <button class="delete-button" data-index="${index}">Delete</button>
       `;
       savedReviewsList.appendChild(li);
 
-      const deleteButton = li.querySelector('.delete-button');
-      deleteButton.addEventListener('click', () => {
+      const deleteButton = li.querySelector(".delete-button");
+      deleteButton.addEventListener("click", () => {
         reviews.splice(index, 1);
         displayReviews();
       });
     });
   }
 });
-
-
 
 //========================================================
 
@@ -395,16 +394,14 @@ const favoritesLink = document.getElementById("favoritesLink");
 favoritesLink.addEventListener("click", () => {
   document.getElementById("savedReview").classList.add("hidden");
   document.getElementById("fav").classList.remove("hidden");
-  document.getElementById("favorites").classList.remove("hidden"); 
+  document.getElementById("favorites").classList.remove("hidden");
   document.getElementById("bookSection").classList.add("hidden");
   document.getElementById("bookResults").classList.add("hidden");
 
   const elementToShow = document.getElementById("favorites-container");
-  elementToShow.style.display = "block";
 
   const elementToHide = document.getElementById("savedReview");
   elementToHide.style.display = "none";
-
 });
 
 const contantsLink = document.getElementById("contacts");
@@ -414,26 +411,25 @@ contantsLink.addEventListener("click", () => {
 
 const homePage = document.getElementById("homePage");
 homePage.addEventListener("click", () => {
-  document.getElementById("savedReview").classList.add("hidden"); 
+  document.getElementById("savedReview").classList.add("hidden");
   document.getElementById("bookSection").classList.remove("hidden");
-  document.getElementById("bookResults").classList.add("hidden"); 
+  document.getElementById("bookResults").classList.add("hidden");
 });
 
 const savedReviewLink = document.getElementById("savedReviewLink"); //not working
 savedReviewLink.addEventListener("click", () => {
-  
   const elementToHide = document.getElementById("favorites-container");
   elementToHide.style.display = "none";
 
   const elementToShow = document.getElementById("savedReview");
-  elementToShow.style.display = "block";
+  elementToShow.style.display = "flex";
 
   document.getElementById("savedReview").classList.remove("hidden");
-  
+
   document.getElementById("favorites-h").classList.add("hidden");
   document.getElementById("bookSection").classList.add("hidden");
   document.getElementById("bookResults").classList.add("hidden");
-  //document.querySelector(`#${clonedBooks}`).classList.add("hidden");  // PROBLEMMMMM 
+  //document.querySelector(`#${clonedBooks}`).classList.add("hidden");  // PROBLEMMMMM
 });
 
 document.getElementById("newBookForm").addEventListener("submit", (e) => {
@@ -468,22 +464,23 @@ const bookResults = document.getElementById("bookResults");
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
 
-$(window).resize(function() {
+$(window).resize(function () {
   if (toggleButton && navMenu) {
     if ($(window).width() <= 1501) {
       if (toggleButton.checked) {
-        navMenu.style.background = "linear-gradient(to bottom, rgb(130, 38, 38) 0%, #ff3333 50%)";
+        navMenu.style.background =
+          "linear-gradient(to bottom, rgb(130, 38, 38) 0%, #ff3333 50%)";
+      } else {
+        navMenu.style.background =
+          "linear-gradient(to bottom, #333399 0%, #33ccff 50%)";
       }
-      else {
-        navMenu.style.background = "linear-gradient(to bottom, #333399 0%, #33ccff 50%)";
-      };
     } else {
-      navMenu.style.background = "none"
-    };
-  };
+      navMenu.style.background = "none";
+    }
+  }
 });
 
-document.querySelector("#check").addEventListener("change", function() {
+document.querySelector("#check").addEventListener("change", function () {
   $(window).resize();
 });
 
