@@ -207,17 +207,23 @@ li img {
   align-items: center;
   flex-direction: column;
   border-radius: 8px;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 0 10px rgba(0.1, 0.1, 0.1, 0.1);
 }
 .saved-reviews-section {
   display: flex;
   flex-direction: column;
+  padding-left: 4%;
+  align-items: center;
+  justify-content: center;
 }
-#savedReview {
+
+.saved-review {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
+  background: linear-gradient(to bottom, #33ccff 19%, #333399 89%);
+  padding: 3%;
 }
 
 h2.addreviewcolor {
@@ -225,7 +231,7 @@ h2.addreviewcolor {
   font-family: "Goudy Bookletter 1911", serif;
   font-style: normal;
   font-weight: 900;
-  font-size: 22px;
+  margin-top: 0;
 }
 
 #reviewForm {
@@ -245,7 +251,15 @@ h2.addreviewcolor {
 }
 #savedReviewsList li {
   list-style: none;
-  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-right: 10%;
+}
+#savedReviewsList img {
+  width: 20%;
 }
 #savedReviewsList p {
   background-color: var(--primary-text-color);
@@ -253,25 +267,31 @@ h2.addreviewcolor {
   padding: 5%;
   box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
+  width: 100%;
+  height: auto;
 }
 #savedReviewsList strong {
   font-family: "Goudy Bookletter 1911", serif;
   font-style: normal;
   font-weight: 900;
   font-size: 22px;
+  display: none;
 }
 #savedReviewsList {
   display: flex;
+  padding: 0;
 }
 #reviewForm label {
-  padding: 3%;
+  padding: 5%;
   font-family: "Goudy Bookletter 1911", serif;
   font-style: normal;
   font-weight: 900;
+  color: var(--primary-text-color);
 }
 #bookSelect {
-  width: 80%;
-  padding: 3%;
+  width: 100%;
+  padding: 6%;
+  margin-top: 1%;
   color: var(--mobile-view-bg-color);
   box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
@@ -374,7 +394,7 @@ footer {
 .footer-container {
   display: flex;
   flex-direction: row;
-  padding: 20px 70px 20px 40px;
+  padding: 5% 10%;
   align-items: flex-start;
   justify-content: space-evenly;
 }
