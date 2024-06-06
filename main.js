@@ -166,6 +166,7 @@ function removeBook(bookId) {
   }
 }
 
+//FUNCTION SEARCH BOOK
 const searchButton = document.getElementById("searchButton");
 
 searchButton.addEventListener("click", (event) => {
@@ -174,6 +175,11 @@ searchButton.addEventListener("click", (event) => {
   bookContainer.classList.add("hidden");
   const bookResults = document.getElementById("bookResults");
   bookResults.classList.remove("hidden");
+
+  const elementToHide = document.getElementById("savedReview");
+  elementToHide.style.display = "none";
+
+
   const searchInput = document
     .getElementById("searchInput")
     .value.toLowerCase()
@@ -211,45 +217,45 @@ searchButton.addEventListener("click", (event) => {
       bookResults.appendChild(foundBooksText);
     });
 
-    const reviewField = document.createElement("input");
-    reviewField.setAttribute("type", "text");
-    reviewField.setAttribute("id", "reviewField");
-    bookResults.appendChild(reviewField);
+    // const reviewField = document.createElement("input");
+    // reviewField.setAttribute("type", "text");
+    // reviewField.setAttribute("id", "reviewField");
+    // bookResults.appendChild(reviewField);
 
-    let saveButton = document.createElement("button");
-    saveButton.setAttribute("id", "addReview");
-    saveButton.innerText = "Add Review";
-    bookResults.appendChild(saveButton);
+    // let saveButton = document.createElement("button");
+    // saveButton.setAttribute("id", "addReview");
+    // saveButton.innerText = "Add Review";
+    // bookResults.appendChild(saveButton);
 
-    let addReview = document.getElementById("addReview");
-    addReview.addEventListener("click", function () {
-      let reviewField = document.getElementById("reviewField");
-      let reviewContainer = document.createElement("div");
-      reviewContainer.className = "deleteSection";
-      let review = document.createElement("p");
+    // let addReview = document.getElementById("addReview");
+    // addReview.addEventListener("click", function () {
+    //   let reviewField = document.getElementById("reviewField");
+    //   let reviewContainer = document.createElement("div");
+    //   reviewContainer.className = "deleteSection";
+    //   let review = document.createElement("p");
 
-      review.innerText = `${reviewField.value}`;
+    //   review.innerText = `${reviewField.value}`;
 
-      reviewContainer.appendChild(review);
+    //   reviewContainer.appendChild(review);
 
-      let deleteButton = document.createElement("button");
-      deleteButton.setAttribute("class", "deleteReview");
-      deleteButton.innerText = "Delete Review";
-      reviewContainer.appendChild(deleteButton);
+    //   let deleteButton = document.createElement("button");
+    //   deleteButton.setAttribute("class", "deleteReview");
+    //   deleteButton.innerText = "Delete Review";
+    //   reviewContainer.appendChild(deleteButton);
 
-      if (reviewField.value === "") {
-        alert("Please Enter Review");
-        return;
-      } else {
-        bookResults.appendChild(reviewContainer);
-        filteredBooks.forEach((book) => (book.review = reviewField.value));
-      }
-      reviewField.value = "";
+    //   if (reviewField.value === "") {
+    //     alert("Please Enter Review");
+    //     return;
+    //   } else {
+    //     bookResults.appendChild(reviewContainer);
+    //     filteredBooks.forEach((book) => (book.review = reviewField.value));
+    //   }
+    //   reviewField.value = "";
 
-      deleteButton.addEventListener("click", function () {
-        reviewContainer.remove();
-      });
-    });
+    //   deleteButton.addEventListener("click", function () {
+    //     reviewContainer.remove();
+    //   });
+    // });
   } else {
     bookResults.textContent = "No books with that title/author found.";
   }
@@ -387,32 +393,47 @@ function updateFavoriteButton(buttonId, isFavorite) {
 
 const favoritesLink = document.getElementById("favoritesLink");
 favoritesLink.addEventListener("click", () => {
-  document.getElementById("saved-review").classList.add("hidden");
+  document.getElementById("savedReview").classList.add("hidden");
   document.getElementById("fav").classList.remove("hidden");
   document.getElementById("favorites").classList.remove("hidden"); 
   document.getElementById("bookSection").classList.add("hidden");
   document.getElementById("bookResults").classList.add("hidden");
+
+  const elementToShow = document.getElementById("favorites-container");
+  elementToShow.style.display = "block";
+
+  const elementToHide = document.getElementById("savedReview");
+  elementToHide.style.display = "none";
+
 });
 
 const contantsLink = document.getElementById("contacts");
 contantsLink.addEventListener("click", () => {
-  document.getElementById("saved-review").classList.add("hidden");
+  document.getElementById("savedReview").classList.add("hidden");
 });
 
 const homePage = document.getElementById("homePage");
 homePage.addEventListener("click", () => {
-  document.getElementById("saved-review").classList.add("hidden"); 
+  document.getElementById("savedReview").classList.add("hidden"); 
   document.getElementById("bookSection").classList.remove("hidden");
   document.getElementById("bookResults").classList.add("hidden"); 
 });
 
 const savedReviewLink = document.getElementById("savedReviewLink"); //not working
 savedReviewLink.addEventListener("click", () => {
-  document.getElementById("saved-review").classList.remove("hidden");
+  
+  const elementToHide = document.getElementById("favorites-container");
+  elementToHide.style.display = "none";
+
+  const elementToShow = document.getElementById("savedReview");
+  elementToShow.style.display = "block";
+
+  document.getElementById("savedReview").classList.remove("hidden");
+  
   document.getElementById("favorites-h").classList.add("hidden");
   document.getElementById("bookSection").classList.add("hidden");
   document.getElementById("bookResults").classList.add("hidden");
-  document.querySelector(`#${clonedBooks}`).classList.add("hidden");  // PROBLEMMMMM 
+  //document.querySelector(`#${clonedBooks}`).classList.add("hidden");  // PROBLEMMMMM 
 });
 
 document.getElementById("newBookForm").addEventListener("submit", (e) => {
@@ -440,7 +461,7 @@ const header = document.querySelector(".header");
 const footer = document.querySelector(".footer");
 const fav = document.getElementById("favorites-container");
 const search = document.querySelector(".searchButton");
-const saved = document.getElementById("saved-review");
+const saved = document.getElementById("savedReview");
 const bar = document.querySelector(".bar");
 const query = window.matchMedia("(min-width: 1501px)");
 const bookResults = document.getElementById("bookResults");

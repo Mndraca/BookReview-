@@ -213,7 +213,7 @@ li img {
   display: flex;
   flex-direction: column;
 }
-#saved-review {
+#savedReview {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -277,7 +277,7 @@ h2.addreviewcolor {
   border-radius: 4px;
 }
 /*This*/
-.bookSection {
+.book-section {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -608,7 +608,7 @@ nav ul {
   align-items: center;
 }
 
-.bookSection,
+.book-section,
 .bookSection2,
 #bookResults {
   flex-direction: row;
