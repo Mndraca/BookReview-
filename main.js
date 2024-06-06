@@ -399,6 +399,7 @@ favoritesLink.addEventListener("click", () => {
   document.getElementById("bookResults").classList.add("hidden");
 
   const elementToShow = document.getElementById("favorites-container");
+  elementToShow.style.display = "block";
 
   const elementToHide = document.getElementById("savedReview");
   elementToHide.style.display = "none";
@@ -416,7 +417,7 @@ homePage.addEventListener("click", () => {
   document.getElementById("bookResults").classList.add("hidden");
 });
 
-const savedReviewLink = document.getElementById("savedReviewLink"); //not working
+const savedReviewLink = document.getElementById("savedReviewLink"); 
 savedReviewLink.addEventListener("click", () => {
   const elementToHide = document.getElementById("favorites-container");
   elementToHide.style.display = "none";
@@ -452,7 +453,7 @@ document.getElementById("newBookForm").addEventListener("submit", (e) => {
 });
 
 const toggleButton = document.querySelector("#check");
-const body = document.querySelector(".bookSection");
+const body = document.querySelector(".book-section");
 const header = document.querySelector(".header");
 const footer = document.querySelector(".footer");
 const fav = document.getElementById("favorites-container");
