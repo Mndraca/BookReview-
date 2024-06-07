@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
       li.innerHTML = `
         <img src="${review.image}" alt="${review.title}" style="width: 130px; height: auto;">
         <strong>${review.title}</strong>
-        <p>${review.text}</p>
+        <textarea class="text-review-output">${review.text}</textarea>
         <button class="delete-button" data-index="${index}">Delete</button>
       `;
       savedReviewsList.appendChild(li);
@@ -417,7 +417,7 @@ homePage.addEventListener("click", () => {
   document.getElementById("bookResults").classList.add("hidden");
 });
 
-const savedReviewLink = document.getElementById("savedReviewLink"); 
+const savedReviewLink = document.getElementById("savedReviewLink");
 savedReviewLink.addEventListener("click", () => {
   const elementToHide = document.getElementById("favorites-container");
   elementToHide.style.display = "none";
