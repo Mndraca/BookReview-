@@ -415,6 +415,10 @@ homePage.addEventListener("click", () => {
   document.getElementById("savedReview").classList.add("hidden");
   document.getElementById("bookSection").classList.remove("hidden");
   document.getElementById("bookResults").classList.add("hidden");
+  const elementToHide = document.getElementById("savedReview");
+  elementToHide.style.display = "none";
+  const elementToHide2 = document.getElementById("favorites-container");
+  elementToHide2.style.display = "none";
 });
 
 const savedReviewLink = document.getElementById("savedReviewLink"); 
