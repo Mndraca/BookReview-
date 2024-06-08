@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
       li.innerHTML = `
         <img src="${review.image}" alt="${review.title}" style="width: 130px; height: auto;">
         <strong>${review.title}</strong>
-        <textarea class="text-review-output">${review.text}</textarea>;
+        <textarea class="text-review-output">${review.text}</textarea>
         <button class="delete-button" data-index="${index}">Delete</button>
       `;
       savedReviewsList.appendChild(li);
