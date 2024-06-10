@@ -468,6 +468,7 @@ const query = window.matchMedia("(min-width: 1501px)");
 const bookResults = document.getElementById("bookResults");
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
+const reviewSection = document.getElementById("reviewSection")
 
 $(window).resize(function () {
   if (toggleButton && navMenu) {
@@ -504,6 +505,7 @@ function changeBackground() {
     saved.style.background = bodyColor;
     bar.style.backgroundColor = searchColor;
     bookResults.style.background = bodyColor;
+    reviewSection.style.background = searchColor
   } else {
     body.style.background =
       "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
@@ -518,6 +520,7 @@ function changeBackground() {
     bar.style.backgroundColor = "#f6de74";
     bookResults.style.background =
       "linear-gradient(to bottom, #33ccff 19%, #333399 89%)";
+      reviewSection.style.background = "#f6de74"
   }
 }
 toggleButton.onclick = changeBackground;
