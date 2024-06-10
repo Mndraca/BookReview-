@@ -211,7 +211,10 @@ li img {
 .saved-reviews-section {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   padding-left: 4%;
+  padding-bottom: 4%;
+  overflow-y: auto;
   align-items: center;
   justify-content: center;
 }
@@ -467,7 +470,6 @@ footer {
   margin: 0;
 }
 
-
 #addReview,
 .deleteReview {
   transition: all 1s ease-in-out 0s;
@@ -643,7 +645,8 @@ img {
   width: 100%;
   height: auto;
 }
-#bookResults, h1 {
+#bookResults,
+h1 {
   margin-bottom: 3px;
 }
 
@@ -862,7 +865,6 @@ img {
   .nav-menu.active {
     right: 0;
     display: flex;
-
   }
 }
 
