@@ -203,10 +203,16 @@ li img {
   max-width: 100%;
   padding: 3%;
   display: flex;
+  background: var(--button-bg-color);
   align-items: center;
   flex-direction: column;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0.1, 0.1, 0.1, 0.1);
+  border-radius: 40px;
+  box-shadow: 10px 10px 10px rgba(0.1, 0.1, 0.1, 0.5);
+  margin: 40px;
+}
+.review-section:hover {
+  transform: translate(rotate(90deg));
+  transition: 3s ease;
 }
 .saved-reviews-section {
   display: flex;
@@ -218,17 +224,19 @@ li img {
 
 .saved-review {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   flex-wrap: wrap;
+  height: 100%;
   align-items: center;
   background: linear-gradient(to bottom, #33ccff 19%, #333399 89%);
   padding: 3%;
 }
 
 h2.addreviewcolor {
-  color: var(--primary-text-color);
+  color: #000;
   font-family: "Goudy Bookletter 1911", serif;
   font-style: normal;
+  font-size: 26px;
   font-weight: 900;
   margin-top: 0;
 }
@@ -243,10 +251,15 @@ h2.addreviewcolor {
   display: flex;
   flex-direction: row;
   text-align: center;
+  background: #333399;
+  color: #e3e3e3;
+  border-radius: 8px;
   padding-top: 5%;
+  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.5);
 }
 #reviewForm button {
-  margin-top: 5%;
+  margin-top: 10%;
+  background: #333399;
 }
 #savedReviewsList li {
   list-style: none;
@@ -282,18 +295,20 @@ h2.addreviewcolor {
 }
 #reviewForm label {
   padding: 5%;
+  font-size: 20px;
   font-family: "Goudy Bookletter 1911", serif;
   font-style: normal;
   font-weight: 900;
-  color: var(--primary-text-color);
+  color: #000;
 }
 #bookSelect {
   width: 100%;
   padding: 6%;
   margin-top: 1%;
-  color: var(--mobile-view-bg-color);
+  color: #e3e3e3;
+  background: #333399;
   box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
+  border-radius: 8px;
 }
 #bookSelect option:hover {
   background: var(--primary-bg-color);
@@ -355,8 +370,14 @@ button:focus {
   max-height: 80px;
   box-sizing: border-box;
   overflow: auto;
-  resize: vertical;
+  background: none;
+  resize: none;
+  border: none;
   margin: 10% 0;
+  color: aliceblue;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 900;
   padding: 5%;
   border-radius: 6px;
   text-align: center;
@@ -902,3 +923,4 @@ img {
     scale: 0.9;
   }
 }
+
