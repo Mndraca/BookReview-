@@ -701,6 +701,18 @@ h1 {
   .bookList {
     margin-bottom: 20px;
   }
+  .saved-review {
+    flex-direction: row-reverse;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+  }
+  #savedReviewsList li {
+    width: 50%;
+  }
+  .saved-reviews-section {
+    width: 80%;
+  }
   li img {
     width: 140px;
     height: 192px;
@@ -755,7 +767,7 @@ h1 {
     font-size: 0.5em;
   }
   .review-section {
-    width: 100%;
+    width: 70%;
   }
   #reviewForm {
     width: 80%;
